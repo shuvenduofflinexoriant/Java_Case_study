@@ -26,7 +26,7 @@ public class Client {
 		
 		//System.out.println(empdao.listEmployees());
 		
-		//System.out.println(empdao.getEmployeeNames());
+		System.out.println(empdao.getEmployeeNames());
 		
 		//System.out.println(empdao.searchEmployee(1));
 		
