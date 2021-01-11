@@ -1,5 +1,9 @@
 package com.xoriant.client;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,29 +12,52 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import com.xoriant.beans.Employee;
+import com.xoriant.beans.Book;
+import com.xoriant.beans.BookType;
+import com.xoriant.beans.IssuedBook;
+import com.xoriant.beans.Role;
 import com.xoriant.beans.Student;
-import com.xoriant.dao.EmployeeDAO;
-import com.xoriant.dao.EmployeeDAOImpl;
+
+
+
 
 public class Client {
 
 	public static void main(String[] args) {
+		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
+        Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();  
+		SessionFactory factory = meta.getSessionFactoryBuilder().build();
 		
-		Student student = new Student("Shuvendu",'A');
-		Employee emp = new Employee("Amit","SS",6);
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
 		
-		EmployeeDAO empdao = new EmployeeDAOImpl();
+		Book book = new Book("Java Complete Reference", "Shuvendu", "Oreally", "Dont read this book, stay happy", 10, 10, new Date(), new Date(), BookType.REFERENCEBOOK);
 		
-	//	empdao.addEmployee(emp);
+		Student student = new Student("Kalpesh", Role.STUDENT, new Date(), new Date(), "Kolkata", "123456789", "REG123456", "123");
 		
-		//System.out.println(empdao.listEmployees());
 		
-		System.out.println(empdao.getEmployeeNames());
+		Calendar c = Calendar.getInstance();    
+		c.add(Calendar.DATE, book.getBookType().getMaxBorrowDays());
+		IssuedBook issuebook = new IssuedBook(1, student, new Date(), c.getTime());
 		
-		//System.out.println(empdao.searchEmployee(1));
 		
-		System.out.println(empdao.listEmployeesOrderByName());
+		session.save(book);
+		session.save(student);
+		session.save(issuebook);
+		
+		
+		txn.commit();
+		session.close();
+		
+		
+//		System.out.println("All Employee : ");
+//		session = factory.openSession();
+//		List<Employee> allEmployee = session.createQuery("FROM Employee").getResultList();
+//		System.out.println(allEmployee);
+//		session.close();
+		
+		factory.close();
+
 	}
 
 }

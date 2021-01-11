@@ -2,8 +2,24 @@ package com.xoriant.beans;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+@Entity
+@Table(name="students")
 public class Student {
-	private String userId;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="userid")
+	private int userId;
+	
 	private String name;
 	private Role role;
 	private Date admissionDate;
@@ -12,15 +28,8 @@ public class Student {
 	private String contactNumber;
 	private String registrationNumber;
 	private String rollNumber;
-	public Student() {
-		super();
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -74,6 +83,27 @@ public class Student {
 		return "Student [userId=" + userId + ", name=" + name + ", role=" + role + ", admissionDate=" + admissionDate
 				+ ", releaseDate=" + releaseDate + ", address=" + address + ", contactNumber=" + contactNumber
 				+ ", registrationNumber=" + registrationNumber + ", rollNumber=" + rollNumber + "]";
+	}
+	public Student(String name, Role role, Date admissionDate, Date releaseDate, String address, String contactNumber,
+			String registrationNumber, String rollNumber) {
+		super();
+		this.name = name;
+		this.role = role;
+		this.admissionDate = admissionDate;
+		this.releaseDate = releaseDate;
+		this.address = address;
+		this.contactNumber = contactNumber;
+		this.registrationNumber = registrationNumber;
+		this.rollNumber = rollNumber;
+	}
+	public Student() {
+		super();
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	

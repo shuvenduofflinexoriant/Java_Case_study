@@ -10,4 +10,14 @@ public enum BookType {
 			this.maxBorrowDays = maxBorrowDays;
 			this.finePerDay = finePerDay;
 		}
+
+		public int getMaxBorrowDays() {
+			return maxBorrowDays;
+		}
+
+		public double getFinePerDay() {
+			return finePerDay;
+		}
+		
+		
 }

@@ -15,7 +15,9 @@
       <property name="show_sql">true</property>
       <property name="hibernate.hbm2ddl.auto">create</property>
       
-
+		  <mapping class="com.xoriant.beans.Book"/>
+		  <mapping class="com.xoriant.beans.Student"/>
+		  <mapping class="com.xoriant.beans.IssuedBook"/>
     
    </session-factory>
 </hibernate-configuration>  
