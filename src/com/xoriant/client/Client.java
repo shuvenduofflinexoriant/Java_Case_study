@@ -16,7 +16,10 @@ import com.xoriant.beans.Book;
 import com.xoriant.beans.BookType;
 import com.xoriant.beans.IssuedBook;
 import com.xoriant.beans.Role;
+import com.xoriant.beans.Status;
 import com.xoriant.beans.Student;
+import com.xoriant.dao.LiberianDAO;
+import com.xoriant.dao.LiberianDAOImpl;
 
 
 
@@ -44,9 +47,9 @@ public class Client {
 		IssuedBook issuebook = new IssuedBook(1, student, new Date(), c.getTime());
 		
 		
-		session.save(book);
-		session.save(student);
-		session.save(issuebook);
+//		session.save(book);
+//		session.save(student);
+//		session.save(issuebook);
 		
 		
 		txn.commit();
@@ -58,6 +61,12 @@ public class Client {
 //		List<Employee> allEmployee = session.createQuery("FROM Employee").getResultList();
 //		System.out.println(allEmployee);
 //		session.close();
+		LiberianDAO liberianDAO = new LiberianDAOImpl();
+//		List<IssuedBook> issuedBooks = liberianDAO.getAllBookIssued();
+		System.out.println(liberianDAO.getAllBookReturnRequests());
+		
+		
+		System.out.println(Status.REQUESTRETURN.ordinal()+1);
 		
 		factory.close();
 

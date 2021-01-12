@@ -55,10 +55,10 @@ public class IssuedBook {
 		this.student = student;
 		this.issueDate = issueDate;
 		this.returningDate = returningDate;
-		this.returnedDate = null;
+		this.returnedDate = new Date();
 		this.approverId = null;
 		this.fine = 0;
-		this.status = Status.ISSUED;
+		this.status = Status.REQUESTRETURN;
 	}
 
 	public int getBookId() {

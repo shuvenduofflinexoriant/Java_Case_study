@@ -17,6 +17,7 @@ import com.xoriant.beans.Book;
 import com.xoriant.beans.IssuedBook;
 import com.xoriant.beans.Liberian;
 import com.xoriant.beans.Role;
+import com.xoriant.beans.Status;
 import com.xoriant.beans.Student;
 import com.xoriant.exception.BookReturnDealyException;
 
@@ -109,7 +110,7 @@ public class LiberianDAOImpl implements LiberianDAO {
 	@Override
 	public List<IssuedBook> getAllBookReturnRequests() {
 		Session session = factory.openSession();
-		String hql = "From IssuedBook e where e.returnedDate is not null AND e.approverId is not null";
+		String hql = "From IssuedBook e where e.status = "+ Status.REQUESTRETURN.ordinal();
 		TypedQuery<IssuedBook> query = session.createQuery(hql);
 		List<IssuedBook> issuedBooks = query.getResultList();
 		

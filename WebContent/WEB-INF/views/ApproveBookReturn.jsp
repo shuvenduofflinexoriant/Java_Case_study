@@ -4,9 +4,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Book Return Success!</title>
+<style type="text/css">
+body{
+	height: 100%;
+	width: 100%;
+}
+
+h2{
+   margin: auto auto ;
+}
+
+a{
+	margin : auto auto;
+	padding : 10px;
+}
+</style>
+
 </head>
 <body>
-	This is book return Approve
+	<h2>Book Return Success!</h2>
+	<a href="/">HOME</a>
 </body>
 </html>
