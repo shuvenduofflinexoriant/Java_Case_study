@@ -80,9 +80,16 @@ public class LiberianDAOImpl implements LiberianDAO {
 
 	@Override
 	public double calculateFine(int issuedId) {
-		Date today = new Date();
-		Date returningDate = issuedBook.getReturningDate();
-		int days = 
+		
+		Session session = factory.openSession();
+		String hql = "From IssuedBook I WHERE I.issueId = " + issuedId;
+		TypedQuery<IssuedBook> query = session.createQuery(hql);
+		IssuedBook issuedBook = query.getSingleResult();
+	
+		int days = -1 * issuedBook.getDaysLeft();
+		
+		
+		session.close();
 		return 0;
 	}
 

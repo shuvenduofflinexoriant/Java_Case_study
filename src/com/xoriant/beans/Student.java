@@ -16,7 +16,7 @@ import org.hibernate.annotations.Parameter;
 public class Student {
 	
 	@Id
-	@GenericGenerator(name = "sequence_emp_id", strategy = "com.xoriant.beans.EmployeeIdGenerator")
+	@GenericGenerator(name = "sequence_emp_id", strategy = "com.xoriant.beans.StudentIdGenerator")
 	@GeneratedValue(generator = "sequence_emp_id")
 	@Column(name="userid")
 	private String userId;

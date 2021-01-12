@@ -40,6 +40,7 @@ public class Client {
 		
 		Calendar c = Calendar.getInstance();    
 		c.add(Calendar.DATE, book.getBookType().getMaxBorrowDays());
+		
 		IssuedBook issuebook = new IssuedBook(1, student, new Date(), c.getTime());
 		
 		

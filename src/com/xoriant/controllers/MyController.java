@@ -9,12 +9,15 @@ import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xoriant.beans.IssuedBook;
 import com.xoriant.beans.Liberian;
+import com.xoriant.beans.Student;
 import com.xoriant.client.Client;
 import com.xoriant.dao.LiberianDAO;
 import com.xoriant.dao.LiberianDAOImpl;
@@ -112,6 +115,24 @@ public class MyController {
 		LiberianDAO liberianDAO = new LiberianDAOImpl();
 		List<IssuedBook> issuedBooks = liberianDAO.getAllBookIssued();
         modelAndView.addObject("issuedBooks",issuedBooks);
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping("/StudentRegistration")
+	public ModelAndView getStudent()
+	{
+		ModelAndView modelAndView = new ModelAndView("StudentRegistration");
+		return modelAndView;
+		
+	}
+	
+	@RequestMapping(value="/submitForm",method=RequestMethod.POST)
+	public ModelAndView submitAdmissionForm(@ModelAttribute("student") Student student) {
+	
+		ModelAndView modelAndView  = new ModelAndView("RegistrationSuccess");
+		
+		System.out.println("student"+student);
 		return modelAndView;
 	}
 	

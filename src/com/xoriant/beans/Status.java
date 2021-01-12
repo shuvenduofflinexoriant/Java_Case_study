@@ -1,5 +1,5 @@
 package com.xoriant.beans;
 
 public enum Status {
-	RETURNED, ISSUED, PENDING
+	RETURNED, ISSUED, REQUESTRETURN
 }
