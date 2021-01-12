@@ -24,7 +24,7 @@
 
 <table cellspacing="2" cellpadding="2"  border="1">
 
-<tr><th>ID</th><th>User ID</th><th>Book Id</th><th>Issue Date</th><th>Returning date</th><th>Returned date</th><th>APPROVE</th></tr>
+<tr><th>ID</th><th>User ID</th><th>Book Id</th><th>Issue Date</th><th>Returning date</th><th>Returned date</th><th>Status</th><th>APPROVE</th></tr>
 <%
 // Iterating through subjectList
 
@@ -38,10 +38,11 @@ if(request.getAttribute("issuedBooks") != null)  // Null check for the object
 	%>
 	<tr><td><%=issuedBook.getIssueId()%></td>
 		<td><%=issuedBook.getStudent().getUserId()%></td>
-		<td><%=issuedBook.getBookId()%></td>
+		<td><%=issuedBook.getBook().getBookId()%></td>
 		<td><%=issuedBook.getIssueDate()%></td>
 		<td><%=issuedBook.getReturningDate()%></td>
 		<td><%=issuedBook.getReturnedDate() %></td>
+		<td><%=issuedBook.getStatus() %></td>
 		<td><a href="approveReturn/<%=issuedBook.getIssueId()%>">APPROVE</a></td>
 	</tr>
 	<%

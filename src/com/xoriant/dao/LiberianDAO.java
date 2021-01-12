@@ -21,7 +21,7 @@ public interface LiberianDAO {
 	public boolean approveStudentRegistration(Student student);
 	
 	public boolean approveBookReturn(int issuedId, Liberian liberian) throws BookReturnDealyException;
-	public double calculateFine(int issuedId);
+	public IssuedBook calculateFine(int issuedId);
 	public List<IssuedBook> getAllBookIssued();
 	public List<IssuedBook> getAllBookReturnRequests();
 }

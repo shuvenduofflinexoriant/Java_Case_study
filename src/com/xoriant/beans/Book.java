@@ -122,6 +122,10 @@ public class Book {
 	public void setBookType(BookType bookType) {
 		this.bookType = bookType;
 	}
+
+	public Book() {
+		super();
+	}
 	
 	
 	

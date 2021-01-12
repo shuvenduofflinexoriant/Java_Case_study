@@ -62,6 +62,11 @@ public class LiberianDAOImpl implements LiberianDAO {
 		IssuedBook issuedBook = query.getSingleResult();
 		
 		
+		//TODO remove the below code
+		hql = "From Liberian L WHERE L.userId = " + 1;
+		TypedQuery<Liberian> queryLiberian = session.createQuery(hql);
+		liberian = queryLiberian.getSingleResult();
+		
 		Date today = new Date();
 		if(issuedBook.getFine() <= 0 && today.after(issuedBook.getReturningDate())) {
 			session.close();
@@ -80,18 +85,24 @@ public class LiberianDAOImpl implements LiberianDAO {
 	}
 
 	@Override
-	public double calculateFine(int issuedId) {
+	public IssuedBook calculateFine(int issuedId) {
 		
 		Session session = factory.openSession();
 		String hql = "From IssuedBook I WHERE I.issueId = " + issuedId;
 		TypedQuery<IssuedBook> query = session.createQuery(hql);
 		IssuedBook issuedBook = query.getSingleResult();
 	
-		int days = -1 * issuedBook.getDaysLeft();
+		int days = issuedBook.getDaysLeft();
 		
+		
+	days = days * -1;
+		
+		
+		double fine = days * issuedBook.getBook().getBookType().getFinePerDay();
+		issuedBook.setFine(fine);
 		
 		session.close();
-		return 0;
+		return issuedBook;
 	}
 
 	@Override

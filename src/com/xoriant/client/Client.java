@@ -15,6 +15,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import com.xoriant.beans.Book;
 import com.xoriant.beans.BookType;
 import com.xoriant.beans.IssuedBook;
+import com.xoriant.beans.Liberian;
 import com.xoriant.beans.Role;
 import com.xoriant.beans.Status;
 import com.xoriant.beans.Student;
@@ -44,13 +45,14 @@ public class Client {
 		Calendar c = Calendar.getInstance();    
 		c.add(Calendar.DATE, book.getBookType().getMaxBorrowDays());
 		
-		IssuedBook issuebook = new IssuedBook(1, student, new Date(), c.getTime());
+		IssuedBook issuebook = new IssuedBook(book, student, new Date(), c.getTime());
+		Liberian liberian = new Liberian("Sanket");
 		
 		
-//		session.save(book);
-//		session.save(student);
-//		session.save(issuebook);
-		
+		session.save(book);
+		session.save(student);
+		session.save(issuebook);
+		session.save(liberian);
 		
 		txn.commit();
 		session.close();
@@ -61,12 +63,12 @@ public class Client {
 //		List<Employee> allEmployee = session.createQuery("FROM Employee").getResultList();
 //		System.out.println(allEmployee);
 //		session.close();
-		LiberianDAO liberianDAO = new LiberianDAOImpl();
-//		List<IssuedBook> issuedBooks = liberianDAO.getAllBookIssued();
-		System.out.println(liberianDAO.getAllBookReturnRequests());
-		
-		
-		System.out.println(Status.REQUESTRETURN.ordinal()+1);
+//		LiberianDAO liberianDAO = new LiberianDAOImpl();
+////		List<IssuedBook> issuedBooks = liberianDAO.getAllBookIssued();
+//		System.out.println(liberianDAO.getAllBookReturnRequests());
+//		
+//		
+//		System.out.println(Status.REQUESTRETURN.ordinal()+1);
 		
 		factory.close();
 

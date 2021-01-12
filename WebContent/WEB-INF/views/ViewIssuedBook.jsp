@@ -38,7 +38,7 @@ if(request.getAttribute("issuedBooks") != null)  // Null check for the object
 	%>
 	<tr><td><%=issuedBook.getIssueId()%></td>
 		<td><%=issuedBook.getStudent().getUserId()%></td>
-		<td><%=issuedBook.getBookId()%></td>
+		<td><%=issuedBook.getBook().getBookId()%></td>
 		<td><%=issuedBook.getIssueDate()%></td>
 		<td><%=issuedBook.getReturningDate()%></td>
 		<td><%=issuedBook.getDaysLeft()%></td>

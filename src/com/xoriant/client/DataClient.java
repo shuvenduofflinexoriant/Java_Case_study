@@ -34,7 +34,7 @@ public class DataClient {
 		
 		Calendar c = Calendar.getInstance();    
 		c.add(Calendar.DATE, book.getBookType().getMaxBorrowDays());
-		IssuedBook issuebook = new IssuedBook(1, student, new Date(), c.getTime());
+		IssuedBook issuebook = new IssuedBook(book, student, new Date(), c.getTime());
 		
 		
 		session.save(book);

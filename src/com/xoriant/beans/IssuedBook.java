@@ -23,8 +23,9 @@ public class IssuedBook {
 	@Column(name="id")
 	private int issueId;
 	
-	@Column(name="bookid")
-	private int bookId;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="bookid",foreignKey=@ForeignKey(name="bookid"))
+	private Book book;
 	
 	
 	
@@ -49,9 +50,9 @@ public class IssuedBook {
 	
 	private Status status;
 	
-	public IssuedBook(int bookId, Student student, Date issueDate, Date returningDate) {
+	public IssuedBook(Book book, Student student, Date issueDate, Date returningDate) {
 		super();
-		this.bookId = bookId;
+		this.book = book;
 		this.student = student;
 		this.issueDate = issueDate;
 		this.returningDate = returningDate;
@@ -61,15 +62,36 @@ public class IssuedBook {
 		this.status = Status.REQUESTRETURN;
 	}
 
-	public int getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
-	}
-
 	
+	
+
+	public Book getBook() {
+		return book;
+	}
+
+
+
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+
+
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+
+
 
 	public Student getStudent() {
 		return student;
@@ -127,7 +149,7 @@ public class IssuedBook {
 
 	@Override
 	public String toString() {
-		return "IssuedBook [bookId=" + bookId + ", userId=" + student + ", issueDate=" + issueDate + ", returningDate="
+		return "IssuedBook [bookId=" + book + ", userId=" + student + ", issueDate=" + issueDate + ", returningDate="
 				+ returningDate + ", returnedDate=" + returnedDate + ", approverId=" + approverId + ", fine=" + fine
 				+ "]";
 	}

@@ -1,4 +1,4 @@
-package com.xoriant.beans;
+package com.xoriant.generators;
 
 import java.io.Serializable;
 import java.sql.Connection;

@@ -1,6 +1,21 @@
 package com.xoriant.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="Liberians")
 public class Liberian {
+	
+	@Id
+	@GenericGenerator(name = "sequence_liberian_id", strategy = "com.xoriant.generators.LiberianIdGenerator")
+	@GeneratedValue(generator = "sequence_liberian_id")
+	@Column(name="userid")
 	private String userId;
 	private String name;
 	private Role role;
@@ -27,6 +42,12 @@ public class Liberian {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	public Liberian() {
+		super();
+	}
+	
+	
+	
 	
 	
 }
