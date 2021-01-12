@@ -1,8 +1,13 @@
 package com.xoriant.dao;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -10,7 +15,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.xoriant.beans.Book;
 import com.xoriant.beans.IssuedBook;
+import com.xoriant.beans.Liberian;
+import com.xoriant.beans.Role;
 import com.xoriant.beans.Student;
+import com.xoriant.exception.BookReturnDealyException;
 
 public class LiberianDAOImpl implements LiberianDAO {
 
@@ -24,32 +32,82 @@ public class LiberianDAOImpl implements LiberianDAO {
 	
 	@Override
 	public boolean addBook(Book book) {
-		// TODO Auto-generated method stub
-		return false;
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		Integer id = (Integer) session.save(book);
+		txn.commit();
+		session.close();
+		return id > 0;
 	}
 
 	@Override
 	public boolean approveStudentRegistration(Student student) {
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+//		Student dbstudent = session.get(Student.class, student.getUserId());
+		student.setRole(Role.STUDENT);
+		session.update(student);
+		txn.commit();
+		session.close();
+		return true;
+	}
+
+	@Override
+	public boolean approveBookReturn(int issuedId, Liberian liberian) throws BookReturnDealyException {
 		
-		return false;
+		Session session = factory.openSession();
+		String hql = "From IssuedBook I WHERE I.issueId = " + issuedId;
+		TypedQuery<IssuedBook> query = session.createQuery(hql);
+		IssuedBook issuedBook = query.getSingleResult();
+		
+		
+		Date today = new Date();
+		if(issuedBook.getFine() <= 0 && today.after(issuedBook.getReturningDate())) {
+			session.close();
+			throw new BookReturnDealyException();
+		}
+		
+		
+		Transaction txn = session.beginTransaction();
+		
+		issuedBook.setApproverId(liberian.getUserId());
+		issuedBook.setReturnedDate(today);
+		session.update(issuedBook);
+		txn.commit();
+		session.close();
+		return true;
 	}
 
 	@Override
-	public boolean approveBookReturn(IssuedBook issuedBook) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public double calculateFine(IssuedBook issuedBook) {
-		// TODO Auto-generated method stub
+	public double calculateFine(int issuedId) {
+		Date today = new Date();
+		Date returningDate = issuedBook.getReturningDate();
+		int days = 
 		return 0;
 	}
 
 	@Override
-	public List<IssuedBook> viewAllBookBorrows() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<IssuedBook> getAllBookIssued() {
+		Session session = factory.openSession();
+		
+		
+		String hql = "From IssuedBook";
+		TypedQuery<IssuedBook> query = session.createQuery(hql);
+		List<IssuedBook> issuedBooks = query.getResultList();
+		
+		session.close();
+		return issuedBooks;
+	}
+
+	@Override
+	public List<IssuedBook> getAllBookReturnRequests() {
+		Session session = factory.openSession();
+		String hql = "From IssuedBook e where e.returnedDate is not null AND e.approverId is not null";
+		TypedQuery<IssuedBook> query = session.createQuery(hql);
+		List<IssuedBook> issuedBooks = query.getResultList();
+		
+		session.close();
+		return issuedBooks;
 	}
 
 }

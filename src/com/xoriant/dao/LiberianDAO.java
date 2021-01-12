@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.xoriant.beans.Book;
 import com.xoriant.beans.IssuedBook;
+import com.xoriant.beans.Liberian;
 import com.xoriant.beans.Student;
+import com.xoriant.exception.BookReturnDealyException;
 
 //Approve Return Book
 //Add Book
@@ -18,7 +20,8 @@ public interface LiberianDAO {
 	public boolean addBook(Book book);
 	public boolean approveStudentRegistration(Student student);
 	
-	public boolean approveBookReturn(IssuedBook issuedBook);
-	public double calculateFine(IssuedBook issuedBook);
-	public List<IssuedBook> viewAllBookBorrows();
+	public boolean approveBookReturn(int issuedId, Liberian liberian) throws BookReturnDealyException;
+	public double calculateFine(int issuedId);
+	public List<IssuedBook> getAllBookIssued();
+	public List<IssuedBook> getAllBookReturnRequests();
 }

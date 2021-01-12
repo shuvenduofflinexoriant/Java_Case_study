@@ -16,9 +16,10 @@ import org.hibernate.annotations.Parameter;
 public class Student {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GenericGenerator(name = "sequence_emp_id", strategy = "com.xoriant.beans.EmployeeIdGenerator")
+	@GeneratedValue(generator = "sequence_emp_id")
 	@Column(name="userid")
-	private int userId;
+	private String userId;
 	
 	private String name;
 	private Role role;
@@ -26,6 +27,8 @@ public class Student {
 	private Date releaseDate;
 	private String address;
 	private String contactNumber;
+	
+	
 	private String registrationNumber;
 	private String rollNumber;
 	
@@ -84,11 +87,11 @@ public class Student {
 				+ ", releaseDate=" + releaseDate + ", address=" + address + ", contactNumber=" + contactNumber
 				+ ", registrationNumber=" + registrationNumber + ", rollNumber=" + rollNumber + "]";
 	}
-	public Student(String name, Role role, Date admissionDate, Date releaseDate, String address, String contactNumber,
+	public Student(String name, Date admissionDate, Date releaseDate, String address, String contactNumber,
 			String registrationNumber, String rollNumber) {
 		super();
 		this.name = name;
-		this.role = role;
+		this.role = Role.NEWSTUDENT;
 		this.admissionDate = admissionDate;
 		this.releaseDate = releaseDate;
 		this.address = address;
@@ -99,12 +102,13 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
 	
 	
 	

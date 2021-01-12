@@ -16,23 +16,23 @@ public class StringPrefixedSequenceIdGenerator extends SequenceStyleGenerator {
  
     public static final String VALUE_PREFIX_PARAMETER = "valuePrefix";
     public static final String VALUE_PREFIX_DEFAULT = "";
-    private String valuePrefix;
+    private String valuePrefix = "S";
  
    
 	@Override
 	public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
 		
-		return valuePrefix + super.generate(session, object);
+		return valuePrefix + String.valueOf(super.generate(session, object));
 	}
  
     //return valuePrefix + String.format(numberFormat, super.generate(session, object));
-	
-    public void configure(Type type, Properties params,
-            ServiceRegistry serviceRegistry) throws MappingException {
-        super.configure(LongType.INSTANCE, params, serviceRegistry);
-        valuePrefix = ConfigurationHelper.getString(VALUE_PREFIX_PARAMETER,
-                params, VALUE_PREFIX_DEFAULT);
-    }
+//	
+//    public void configure(Type type, Properties params,
+//            ServiceRegistry serviceRegistry) throws MappingException {
+//        super.configure(LongType.INSTANCE, params, serviceRegistry);
+//        valuePrefix = ConfigurationHelper.getString(VALUE_PREFIX_PARAMETER,
+//                params, VALUE_PREFIX_DEFAULT);
+//    }
  
    
  

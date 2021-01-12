@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -12,13 +13,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xoriant.beans.IssuedBook;
+import com.xoriant.beans.Liberian;
+import com.xoriant.client.Client;
+import com.xoriant.dao.LiberianDAO;
+import com.xoriant.dao.LiberianDAOImpl;
+import com.xoriant.exception.BookReturnDealyException;
+
 
 
 @Controller
 public class MyController {
 	
-
+	private Liberian liberian;
+	private LiberianDAO liberianDAO;
 	
+	public MyController() {
+		 liberianDAO = new LiberianDAOImpl();
+	}
 //		
 //	@RequestMapping("/welcome/{userName}")
 //	public ModelAndView sayHello(@PathVariable("userName") String name) {
@@ -66,6 +78,45 @@ public class MyController {
 //		return modelAndView;
 //	}
 //	
+	
+	
+//	issuedBooks
+//	approveReturn/
+	
+	
+	@RequestMapping("/approveReturn/{issuedId}")
+	public ModelAndView sayHello(@PathVariable("issuedId") int issuedId) {
+		ModelAndView modelAndView = new ModelAndView("ApproveBookReturn");
+		try {
+			liberianDAO.approveBookReturn(issuedId, liberian);
+		} catch (BookReturnDealyException e) {
+			//Display Fine 
+			
+		}
+		return modelAndView;
+	}
+	
+	@RequestMapping("/viewreturnrequests")
+	public ModelAndView viewReturnRequests() {
+		ModelAndView modelAndView = new ModelAndView("ViewReturnRequests");
+		
+		List<IssuedBook> issuedBooks = liberianDAO.getAllBookReturnRequests();
+        modelAndView.addObject("issuedBooks",issuedBooks);
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping("/allissuedbooks")
+	public ModelAndView showAllRequests() {
+		ModelAndView modelAndView = new ModelAndView("ViewIssuedBook");
+		LiberianDAO liberianDAO = new LiberianDAOImpl();
+		List<IssuedBook> issuedBooks = liberianDAO.getAllBookIssued();
+        modelAndView.addObject("issuedBooks",issuedBooks);
+		return modelAndView;
+	}
+	
+	
+	
 	@RequestMapping("/")
 	public ModelAndView welcomeHome() {
 		ModelAndView modelAndView = new ModelAndView("Welcome");

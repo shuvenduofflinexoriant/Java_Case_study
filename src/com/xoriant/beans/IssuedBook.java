@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class IssuedBook {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private int issueId;
 	
@@ -47,6 +47,8 @@ public class IssuedBook {
 	@Column(name="fine")
 	private double fine;
 	
+	private Status status;
+	
 	public IssuedBook(int bookId, Student student, Date issueDate, Date returningDate) {
 		super();
 		this.bookId = bookId;
@@ -56,6 +58,7 @@ public class IssuedBook {
 		this.returnedDate = null;
 		this.approverId = null;
 		this.fine = 0;
+		this.status = Status.ISSUED;
 	}
 
 	public int getBookId() {
@@ -82,6 +85,8 @@ public class IssuedBook {
 
 	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
+		
+		
 	}
 
 	public Date getReturningDate() {
@@ -136,7 +141,9 @@ public class IssuedBook {
 	}
 	
 	
-	
+public int getDaysLeft() {
+	return (int) (getReturningDate().getTime() - getIssueDate().getTime())/(1000 * 3600 * 24);
+}
 	
 
 }
