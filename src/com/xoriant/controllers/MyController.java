@@ -23,8 +23,11 @@ import com.xoriant.beans.Book;
 import com.xoriant.beans.BookType;
 import com.xoriant.beans.IssuedBook;
 import com.xoriant.beans.Liberian;
+import com.xoriant.beans.Role;
 import com.xoriant.beans.Student;
 import com.xoriant.client.Client;
+import com.xoriant.dao.BookDao;
+import com.xoriant.dao.BookDaoImpl;
 import com.xoriant.dao.LiberianDAO;
 import com.xoriant.dao.LiberianDAOImpl;
 import com.xoriant.dao.StudentDao;
@@ -39,62 +42,19 @@ public class MyController {
 	private Liberian liberian;
 	private LiberianDAO liberianDAO;
 	private StudentDao studentDAO;
+	private BookDao bookDAO;
+	private Student loggedStudent;
 
 	public MyController() {
 		liberianDAO = new LiberianDAOImpl();
 		studentDAO = new StudentDaoImpl();
+		bookDAO = new BookDaoImpl();
+		
+		//change it
+		loggedStudent = new Student();
+		loggedStudent.setUserId("ST1");
 	}
-	//		
-	//	@RequestMapping("/welcome/{userName}")
-	//	public ModelAndView sayHello(@PathVariable("userName") String name) {
-	//		ModelAndView modelAndView = new ModelAndView("Welcome");
-	//		modelAndView.addObject("msg", "Welcome "+name);
-	//		return modelAndView;
-	//	}
-	//	
-	//	
-	//	
-	//	@RequestMapping("/allexecutives")
-	//	public ModelAndView showAllExecutives() {
-	//		ModelAndView modelAndView = new ModelAndView("ShowExecutives");
-	//		Client client = new Client();
-	//		Set<Executive> executives = client.getService().populateExecutives(client.getService().populateRequests());
-	//		List<Executive> executiveslist = executives.stream().sorted((e1,e2) -> e1.getExecutiveId() - e2.getExecutiveId()).collect(Collectors.toList());
-	////		String executiveslist = "| executiveid | executive_name | department |<br/>+-------------+----------------+------------+";
-	////		for(Executive executive : executives) {
-	////			System.out.println(executive);
-	////			executiveslist += "\n| "+executive.getExecutiveId()+" | "+executive.getExecutiveName()+" | "+executive.getDepartment()+" |";
-	////		}
-	//		
-	//		modelAndView.addObject("executiveslist",executiveslist);
-	//		
-	//		//modelAndView.addObject(executiveslist);
-	//		return modelAndView;
-	//	}
-	//	
-	//	@RequestMapping("/allrequests")
-	//	public ModelAndView showAllRequests() {
-	//		ModelAndView modelAndView = new ModelAndView("ShowRequests");
-	//		
-	//		Client client = new Client();
-	//		Set<Request> requestslist = client.getService().populateRequests();
-	//        modelAndView.addObject("requestslist",requestslist);
-	//		return modelAndView;
-	//	}
-	//	
-	//	@RequestMapping("/empreq/{empId}")
-	//	public ModelAndView sayHello(@PathVariable("empId") int empId) {
-	//		ModelAndView modelAndView = new ModelAndView("ShowRequests");
-	//		Client client = new Client();
-	//		Set<Request> requestslist = client.getService().populateRequests().stream().filter(em -> em.getExecutiveId() == empId).collect(Collectors.toSet());
-	//		 modelAndView.addObject("requestslist",requestslist);
-	//		return modelAndView;
-	//	}
-	//	
-
-
-	//	issuedBooks
-	//	approveReturn/
+	
 
 
 	@RequestMapping("/approveReturn/{issuedId}")
@@ -129,21 +89,19 @@ public class MyController {
 		ModelAndView modelAndView = new ModelAndView("FineCollectSuccess");
 		
 		IssuedBook issuedBook = liberianDAO.collectFine(issuedId,liberian);
-		
-	
+
 		modelAndView.addObject("fine",issuedBook.getFine());
 		modelAndView.addObject("approver",issuedBook.getApproverId());
 		modelAndView.addObject("bookname",issuedBook.getBook().getBookName());
 		modelAndView.addObject("userid",issuedBook.getStudent().getUserId());
 		modelAndView.addObject("username",issuedBook.getStudent().getName());
-//		<h4>Book : <%=request.getAttribute("bookname") %></h4>
-//		<h4>User Id : <%=request.getAttribute("userid") %></h4>
-//		<h4>Name : <%=request.getAttribute("username") %></h4>
-//		<h4>Fine Amount: <%=request.getAttribute("fine") %></h4>
 		return modelAndView;
 	
 	}
 
+	
+	//Anjali
+	
 	@RequestMapping("/viewreturnrequests")
 	public ModelAndView viewReturnRequests() {
 		ModelAndView modelAndView = new ModelAndView("ViewReturnRequests");
@@ -173,13 +131,42 @@ public class MyController {
 	}
 
 	@RequestMapping(value="/submitForm",method=RequestMethod.POST)
-	public ModelAndView submitAdmissionForm(@ModelAttribute("student") Student student) {
+	public ModelAndView submitAdmissionForm(
+			@RequestParam("name") String name,
+			@RequestParam("address") String address,
+			@RequestParam("contactNumber") String contactNumber,
+//			@RequestParam("registrationNumber") String registrationNumber,
+//			@RequestParam("rollNumber") String rollNumber,
+			@RequestParam("admissionDate") String admissionDate, 
+			@RequestParam("releaseDate") String releaseDate) {
 
-		ModelAndView modelAndView  = new ModelAndView("RegistrationSuccess");
-		studentDAO.addStudent(student);
-		System.out.println("student"+student);
-		return modelAndView;
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	
+	Student student = new Student();
+	student.setName(name);
+	student.setAddress(address);
+	student.setContactNumber(contactNumber);
+	try
+	{
+		Date date1 = formatter.parse(admissionDate);
+		Date date2 = formatter.parse(releaseDate);
+		
+		
+		student.setAdmissionDate(date1);
+		student.setReleaseDate(date2);
+		
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+		System.out.println("Invalid date formate");
 	}
+	
+	student.setRole(Role.NEWSTUDENT);
+	ModelAndView modelAndView  = new ModelAndView("RegistrationSuccess");
+	modelAndView.addObject(student);
+	studentDAO.addStudent(student);
+	return modelAndView;
+}
 	
 	
 	@RequestMapping("/addbook") 
@@ -224,7 +211,62 @@ public class MyController {
 		return modelAndView;
 		
 	}
+	
+	//Anjali
+	@RequestMapping("/borrow")
+	public ModelAndView borrowBook() {
+		ModelAndView modelAndView = new ModelAndView("BorrowBook");
+		List<Book> books = bookDAO.getAllBooks();
+		modelAndView.addObject("books",books);
+		return modelAndView;
+	}
+	
+	//Anjali
+	@RequestMapping(value="/SearchBook")
+	public ModelAndView getBook()
+	{
+		ModelAndView modelAndView = new ModelAndView("SearchBook");
+		return modelAndView;
+	}
 
+	
+	
+	//sanket 
+	
+	@RequestMapping("/borrow/{bookId}")
+	public ModelAndView addToIssuedBook(@PathVariable("bookId") int bookId) {
+		ModelAndView modelAndView;
+		System.out.println("Borrow Book  "+ bookId);
+		
+		if(bookDAO.issueBookRequest(loggedStudent.getUserId(), bookId)) {
+			modelAndView = new ModelAndView("BookIssueSuccess");
+		}
+		else {
+			modelAndView = new ModelAndView("BookIssueFail");
+		}
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public ModelAndView displayBookSubmitForm() {
+		
+		ModelAndView modelAndView = new ModelAndView("Login");	
+		return modelAndView;
+		
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public ModelAndView displayBookSubmitForm(@RequestParam("userId") String userId,
+			@RequestParam("password") String password) {
+		
+		ModelAndView modelAndView = new ModelAndView("Welcome");
+		
+		System.out.println(userId);
+		System.out.println(password);
+		
+		return modelAndView;
+		
+	}
 
 
 	@RequestMapping("/")

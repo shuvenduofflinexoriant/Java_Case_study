@@ -22,14 +22,19 @@
 <strong><a>View Book Return Requests</a></strong>
 <br></br>
 
-<table cellspacing="2" cellpadding="2"  border="1">
 
-<tr><th>ID</th><th>User ID</th><th>Book Id</th><th>Issue Date</th><th>Returning date</th><th>Returned date</th><th>Status</th><th>APPROVE</th></tr>
 <%
 // Iterating through subjectList
 
-if(request.getAttribute("issuedBooks") != null)  // Null check for the object
+if(request.getAttribute("issuedBooks") != null && !issuedBooks.isEmpty())  // Null check for the object
 {
+	
+	%>
+	<table cellspacing="2" cellpadding="2"  border="1">
+
+<tr><th>ID</th><th>User ID</th><th>Book Id</th><th>Issue Date</th><th>Returning date</th><th>Returned date</th><th>Status</th><th>APPROVE</th></tr>
+	<%
+	
 	Iterator<IssuedBook> iterator = issuedBooks.iterator();  // Iterator interface
 	
 	while(iterator.hasNext())  // iterate through all the data until the last record
@@ -47,8 +52,14 @@ if(request.getAttribute("issuedBooks") != null)  // Null check for the object
 	</tr>
 	<%
 	}
+}else{
+	%>
+	No Return Request Present!
+	<%
 }
 %>
 </table>
+
+
 </body>
 </html>

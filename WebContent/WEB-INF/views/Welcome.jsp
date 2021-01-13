@@ -8,5 +8,27 @@
 </head>
 <body>
  <h2>Welcome To Library Management System</h2>
+ 
+
+	 <a href="StudentRegistration">Register Student</a>
+	 <br>
+	 <a href="SearchBook">Search Book</a>
+	 <br>
+	 <a href="borrow">Borrow Book</a>
+	 <br>
+	 <a href="viewreturnrequests">View Book Return Requests</a>
+	 <br>
+	 <a href="addbook">Add BOOK</a>
+	 
+	  <br>
+	 <a href="allissuedbooks">View ALL ISSUED BOOKS</a>
+	 
+	 
+	 <br>
+	 <a href="borrow">Borrow Book (SAnket)</a>
+	 
+	 
+	 
+	 
 </body>
 </html>

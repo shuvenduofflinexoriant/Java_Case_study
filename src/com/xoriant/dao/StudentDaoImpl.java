@@ -2,6 +2,8 @@ package com.xoriant.dao;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -32,9 +34,6 @@ public class StudentDaoImpl implements StudentDao {
 		Transaction txn = session.beginTransaction();
 		
 		String userId1 = (String) session.save(student);
-		
-		
-		
 		txn.commit();
 		session.close();
 		System.out.println("Saved Successfully");
@@ -42,11 +41,7 @@ public class StudentDaoImpl implements StudentDao {
 		
 	}
 
-	@Override
-	public List<Book> searchBook() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public void  issueBook() {
@@ -58,6 +53,20 @@ public class StudentDaoImpl implements StudentDao {
 	public Book returnBook() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public List<Book> searchBookByKeyword(int keyword) {
+
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		String hql = "From Book b where b.bookId = "+keyword;
+		TypedQuery<Book> query = session.createQuery(hql);
+		List<Book> books = query.getResultList();
+		txn.commit();
+		session.close();
+		return books;
 	}
 
 }

@@ -24,7 +24,7 @@
 
 <table cellspacing="2" cellpadding="2"  border="1">
 
-<tr><th>ID</th><th>User ID</th><th>Book Id</th><th>Issue Date</th><th>Returning date</th><th>Days Left</th><th>Approver</th><th>Fine</th></tr>
+<tr><th>ID</th><th>User ID</th><th>Book Id</th><th>Issue Date</th><th>Returning date</th><th>Days Left</th><th>Status</th><th>Approver</th><th>Fine</th></tr>
 <%
 // Iterating through subjectList
 
@@ -42,6 +42,7 @@ if(request.getAttribute("issuedBooks") != null)  // Null check for the object
 		<td><%=issuedBook.getIssueDate()%></td>
 		<td><%=issuedBook.getReturningDate()%></td>
 		<td><%=issuedBook.getDaysLeft()%></td>
+		<td><%=issuedBook.getStatus()%></td>
 		<td><%=issuedBook.getApproverId()%></td>
 		<td><%=issuedBook.getFine()%></td>
 	</tr>
