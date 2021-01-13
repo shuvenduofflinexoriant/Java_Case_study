@@ -11,6 +11,14 @@
 Returned Books
 
 <table>
+<thead>
+		<tr>
+			<th>Book ID</th>
+			<th>Book Name</th>
+			<th>Book Status</th>
+		
+		</tr>
+	</thead>
   <c:forEach items="${issuedBooks}" var="issuedBook">
     <tr>
       <td><c:out value="${issuedBook.value.bookId}" /></td>

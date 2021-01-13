@@ -15,11 +15,30 @@ Book Borrow
 	
 
 <table>
+	<thead>
+		<tr>
+			<th>Book ID</th>
+			<th>Book Name</th>
+			<th>Book Type</th>
+			<th>Book Author</th>
+			<th>Book Publication</th>
+			<th>Available Quantity</th>
+			<th>Total Quantity</th>
+			<th>Description</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+
   <c:forEach items="${books}" var="book">
     <tr>
       <td><c:out value="${book.bookId}" /></td>
       <td><c:out value="${book.bookName}" /></td>
       <td><c:out value="${book.bookType}" /></td>
+      <td><c:out value="${book.author}" /></td>
+      <td><c:out value="${book.publication}" /></td>
+      <td><c:out value="${book.availableQuantity}" /></td>
+      <td><c:out value="${book.totalQuantity}" /></td>
+      <td><c:out value="${book.description}" /></td>
   	  <td><a href="<c:url value='/borrow/${book.bookId}' />" >Issue Book</a></td>
     </tr>
   </c:forEach>
