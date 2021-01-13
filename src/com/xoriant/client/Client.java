@@ -17,20 +17,8 @@ public class Client {
 
 	public static void main(String[] args) {
 		
-		Student student = new Student("Shuvendu",'A');
-		Employee emp = new Employee("Amit","SS",6);
-		
-		EmployeeDAO empdao = new EmployeeDAOImpl();
-		
-	//	empdao.addEmployee(emp);
-		
-		//System.out.println(empdao.listEmployees());
-		
-		System.out.println(empdao.getEmployeeNames());
-		
-		//System.out.println(empdao.searchEmployee(1));
-		
-		System.out.println(empdao.listEmployeesOrderByName());
+
+		System.out.println("hi");
 	}
 
 }
