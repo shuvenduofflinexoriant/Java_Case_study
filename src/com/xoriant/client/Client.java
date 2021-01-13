@@ -8,29 +8,22 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import com.xoriant.beans.Employee;
-import com.xoriant.beans.Student;
-import com.xoriant.dao.EmployeeDAO;
-import com.xoriant.dao.EmployeeDAOImpl;
+import com.xoriant.beans.Book;
 
 public class Client {
 
 	public static void main(String[] args) {
+		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
+	    Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();  
+	    SessionFactory factory = meta.getSessionFactoryBuilder().build();
 		
-		Student student = new Student("Shuvendu",'A');
-		Employee emp = new Employee("Amit","SS",6);
+	    
+	    Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
 		
-		EmployeeDAO empdao = new EmployeeDAOImpl();
 		
-	//	empdao.addEmployee(emp);
-		
-		//System.out.println(empdao.listEmployees());
-		
-		System.out.println(empdao.getEmployeeNames());
-		
-		//System.out.println(empdao.searchEmployee(1));
-		
-		System.out.println(empdao.listEmployeesOrderByName());
+	    
+	    
 	}
 
 }

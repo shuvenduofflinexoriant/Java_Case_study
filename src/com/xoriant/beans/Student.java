@@ -1,24 +1,64 @@
 package com.xoriant.beans;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="students")
 public class Student {
-	private String userId;
+	
+	@Id
+	@GeneratedValue
+	(strategy=GenerationType.SEQUENCE)
+	@Column(name="userId")
+	private Integer userId;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column
 	private Role role;
+	
+	@Column(name="admissionDate")
 	private Date admissionDate;
+	
+	@Column(name="releaseDate")
 	private Date releaseDate;
+	
+	@Column(name="address")
 	private String address;
+	
+	@Column(name="contactNumber")
 	private String contactNumber;
+	
+	@Column(name="registrationNumber")
 	private String registrationNumber;
+	
+	@Column(name="rollNumber")
 	private String rollNumber;
+	
+	
+	
 	public Student() {
-		super();
+		
 	}
-	public String getUserId() {
+	
+	
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 	public String getName() {
@@ -69,6 +109,8 @@ public class Student {
 	public void setRollNumber(String rollNumber) {
 		this.rollNumber = rollNumber;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "Student [userId=" + userId + ", name=" + name + ", role=" + role + ", admissionDate=" + admissionDate

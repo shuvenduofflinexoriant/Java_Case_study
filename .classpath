@@ -15,5 +15,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernet Jars"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SpringLib"/>
+	<classpathentry kind="lib" path="C:/Users/dalvi_sk/Downloads/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dalvi_sk/Downloads/javax.servlet.jsp.jstl-1.2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
