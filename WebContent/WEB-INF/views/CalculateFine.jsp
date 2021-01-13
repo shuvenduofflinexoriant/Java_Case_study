@@ -7,9 +7,16 @@
 <title>Book Fine</title>
 </head>
 <body>
-	This book is Due with Due Date!!
-	Dealy In Days : <%=request.getAttribute("days") %>
-	Fine Amount: <%=request.getAttribute("fine") %>
-	<button>Collect Fine</button>
+<div class="container">
+	<h2>This book is Due with Due Date!!</h2>
+	<h4>Book : <%=request.getAttribute("bookname") %></h4>
+	<h4>Book ID: <%=request.getAttribute("bookid") %></h4>
+	<h4>Book Type : <%=request.getAttribute("booktype") %></h4>
+	<h4>Delay In Days : <%=request.getAttribute("days") %></h4>
+	<h4>Fine Per Day : <%=request.getAttribute("fineperday") %></h4>
+	<h4>Fine Amount: <%=request.getAttribute("fine") %></h4>
+	<br>
+	<button onclick="location.href='http://localhost:8016/Java_Case_Study/collectFine/<%=request.getAttribute("issuedId")%>'">Collect Fine</button>
+</div>
 </body>
 </html>

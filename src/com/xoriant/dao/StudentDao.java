@@ -8,7 +8,7 @@ import com.xoriant.beans.Student;
 
 public interface StudentDao {
 	
-	public Integer addStudent(Student student);
+	public String addStudent(Student student);
 	public List<Book> searchBook();
 	public void issueBook();
 	public Book returnBook();

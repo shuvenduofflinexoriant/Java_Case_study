@@ -26,20 +26,19 @@ public class StudentDaoImpl implements StudentDao {
 	
 
 	@Override
-	public Integer addStudent(Student student) {
+	public String addStudent(Student student) {
 		// TODO Auto-generated method stub
-		Integer userId= null;
 		Session session =  factory.openSession();
 		Transaction txn = session.beginTransaction();
 		
-		Integer id = (Integer) session.save(student);
-		System.out.println(id);
+		String userId1 = (String) session.save(student);
+		
 		
 		
 		txn.commit();
 		session.close();
 		System.out.println("Saved Successfully");
-		return userId;
+		return userId1;
 		
 	}
 

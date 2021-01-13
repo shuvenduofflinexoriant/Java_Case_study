@@ -33,6 +33,8 @@ public class LiberianDAOImpl implements LiberianDAO {
 	
 	@Override
 	public boolean addBook(Book book) {
+		
+		
 		Session session = factory.openSession();
 		Transaction txn = session.beginTransaction();
 		Integer id = (Integer) session.save(book);
@@ -63,7 +65,8 @@ public class LiberianDAOImpl implements LiberianDAO {
 		
 		
 		//TODO remove the below code
-		hql = "From Liberian L WHERE L.userId = " + 1;
+		String userId = "LIB1";
+		hql = "From Liberian WHERE userId = 'LIB1'"; // + userId;
 		TypedQuery<Liberian> queryLiberian = session.createQuery(hql);
 		liberian = queryLiberian.getSingleResult();
 		
@@ -78,6 +81,9 @@ public class LiberianDAOImpl implements LiberianDAO {
 		
 		issuedBook.setApproverId(liberian.getUserId());
 		issuedBook.setReturnedDate(today);
+		issuedBook.setStatus(Status.RETURNED);
+		
+		System.out.println(issuedBook);
 		session.update(issuedBook);
 		txn.commit();
 		session.close();
@@ -91,16 +97,10 @@ public class LiberianDAOImpl implements LiberianDAO {
 		String hql = "From IssuedBook I WHERE I.issueId = " + issuedId;
 		TypedQuery<IssuedBook> query = session.createQuery(hql);
 		IssuedBook issuedBook = query.getSingleResult();
-	
 		int days = issuedBook.getDaysLeft();
-		
-		
-	days = days * -1;
-		
-		
+	    days = days * -1;
 		double fine = days * issuedBook.getBook().getBookType().getFinePerDay();
 		issuedBook.setFine(fine);
-		
 		session.close();
 		return issuedBook;
 	}
@@ -127,6 +127,33 @@ public class LiberianDAOImpl implements LiberianDAO {
 		
 		session.close();
 		return issuedBooks;
+	}
+
+	@Override
+	public IssuedBook collectFine(int issuedId, Liberian liberian) {
+
+
+		Session session = factory.openSession();
+		IssuedBook issuedBook = calculateFine(issuedId);
+		
+		//TODO remove the below code
+		String userId = "LIB1";
+		String hql = "From Liberian WHERE userId = 'LIB1'"; // + userId;
+		TypedQuery<Liberian> queryLiberian = session.createQuery(hql);
+		liberian = queryLiberian.getSingleResult();
+		
+		
+		issuedBook.setApproverId(liberian.getUserId());
+		issuedBook.setStatus(Status.RETURNED);
+		
+		Transaction txn = session.beginTransaction();
+		session.update(issuedBook);
+		txn.commit();
+		session.close();
+		
+		return issuedBook;
+		
+		
 	}
 
 }

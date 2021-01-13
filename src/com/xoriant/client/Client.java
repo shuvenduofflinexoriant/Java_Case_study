@@ -21,7 +21,14 @@ import com.xoriant.beans.Status;
 import com.xoriant.beans.Student;
 import com.xoriant.dao.LiberianDAO;
 import com.xoriant.dao.LiberianDAOImpl;
+import com.xoriant.exception.BookReturnDealyException;
 
+//Update return date
+///UPDATE issuedbook SET returneddate = "2021-01-25 00:00:00" WHERE id = 4;
+
+
+//request return
+//UPDATE issuedbook SET status = 2 WHERE id = 4;
 
 
 
@@ -54,6 +61,8 @@ public class Client {
 		session.save(issuebook);
 		session.save(liberian);
 		
+		
+		
 		txn.commit();
 		session.close();
 		
@@ -71,6 +80,15 @@ public class Client {
 //		System.out.println(Status.REQUESTRETURN.ordinal()+1);
 		
 		factory.close();
+		
+//		LiberianDAO liberianDAO = new LiberianDAOImpl();
+//		try {
+//			liberianDAO.approveBookReturn(2, liberian);
+//			
+//		} catch (BookReturnDealyException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 	}
 	

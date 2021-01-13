@@ -1,5 +1,4 @@
 package com.xoriant.beans;
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,35 +11,39 @@ import javax.persistence.Table;
 @Entity
 @Table(name="books")
 public class Book {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@Column(name="bookid")
+	@Column(name="bookId")
 	private int bookId;
 	
-	
+	@Column(name="bookName")
 	private String bookName;
-	private String author;
-	private String publication;
-	private String description;
-	private int totalQuantity;
-	private int availableQuantity;
-	private Date publishDate;
-	private Date availableOn;
-	private BookType bookType;
 	
-	public Book(String bookName, String author, String publication, String description, int totalQuantity,
-			int availableQuantity, Date publishDate, Date availableOn, BookType bookType) {
-		super();
-		this.bookName = bookName;
-		this.author = author;
-		this.publication = publication;
-		this.description = description;
-		this.totalQuantity = totalQuantity;
-		this.availableQuantity = availableQuantity;
-		this.publishDate = publishDate;
-		this.availableOn = availableOn;
-		this.bookType = bookType;
+	@Column(name="author")
+	private String author;
+	
+	@Column(name="publication")
+	private String publication;
+	
+	@Column(name="description")
+	private String description;
+	
+	@Column(name="totalQuantity")
+	private int totalQuantity;
+	
+	@Column(name="availableQuantity")
+	private int availableQuantity;
+	
+	@Column(name="publishDate")
+	private Date publishDate;
+	
+	@Column(name="availableOn")
+	private Date availableOn;
+	
+	@Column(name="bookType")
+	private BookType bookType;
+
+	public Book() {
 	}
 
 	public int getBookId() {
@@ -123,9 +126,30 @@ public class Book {
 		this.bookType = bookType;
 	}
 
-	public Book() {
-		super();
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", author=" + author + ", publication="
+				+ publication + ", description=" + description + ", totalQuantity=" + totalQuantity
+				+ ", availableQuantity=" + availableQuantity + ", publishDate=" + publishDate + ", availableOn="
+				+ availableOn + ", bookType=" + bookType + "]";
 	}
+
+	public Book(String bookName, String author, String publication, String description, int totalQuantity,
+			int availableQuantity, Date publishDate, Date availableOn, BookType bookType) {
+		super();
+		this.bookName = bookName;
+		this.author = author;
+		this.publication = publication;
+		this.description = description;
+		this.totalQuantity = totalQuantity;
+		this.availableQuantity = availableQuantity;
+		this.publishDate = publishDate;
+		this.availableOn = availableOn;
+		this.bookType = bookType;
+	}
+
+	
+
 	
 	
 	
