@@ -29,14 +29,18 @@
 	{
 		background-color:Ivory!important;
 		 font-style: italic;
-		 font-family: Arial, Helvetica, sans-serif;
+		font-family: cursive;
 	}
 	h3
 	{
 		margin-left:350px;
 		margin-top:10px !important;
 		position:fixed!important;
-		font-size:50px;
+		font-size:40px;
+		font-weight:bold!important;
+		color:#06022B;
+		text-align:center;
+		width:350px;
 	}
 	input
 	{	
@@ -72,7 +76,7 @@
 <body>
 	<div class="row">
 		<div class="col-md-12">
-			<h3 class="text-info">SEARCH BOOK</h3>
+			<h3 class=" bg-light text-dark">SEARCH BOOK</h3>
 		</div>
 	</div>
 	</br>

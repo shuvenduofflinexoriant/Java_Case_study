@@ -48,7 +48,7 @@ public class MyController {
 	}
 	
 	@RequestMapping(value="/submitForm",method=RequestMethod.POST)
-		public ModelAndView submitAdmissionForm(@RequestParam("name") String name,@RequestParam("address") String address, @RequestParam("contactNumber") String contactNumber, @RequestParam("registrationNumber") String registrationNumber, @RequestParam("rollNumber") String rollNumber,@RequestParam("admissionDate") String admissionDate, @RequestParam("releaseDate") String releaseDate) {
+		public ModelAndView submitAdmissionForm(@RequestParam("name") String name,@RequestParam("address") String address, @RequestParam("contactNumber") String contactNumber,@RequestParam("admissionDate") String admissionDate, @RequestParam("releaseDate") String releaseDate) {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		
@@ -56,8 +56,7 @@ public class MyController {
 		student.setName(name);
 		student.setAddress(address);
 		student.setContactNumber(contactNumber);
-		student.setRollNumber(rollNumber);
-		student.setRegistrationNumber(registrationNumber);
+		
 		try
 		{
 			Date date1 = formatter.parse(admissionDate);
@@ -73,7 +72,7 @@ public class MyController {
 			System.out.println("Invalid date formate");
 		}
 		
-		student.setRole(Role.STUDENT);
+		student.setRole(Role.NEWSTUDENT);
 		
 		ModelAndView modelAndView  = new ModelAndView("RegistrationSuccess");
 		modelAndView.addObject(student);

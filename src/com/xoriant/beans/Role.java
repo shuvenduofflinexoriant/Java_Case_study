@@ -1,7 +1,7 @@
 package com.xoriant.beans;
 
 public enum Role {
-	ADMIN(10), STUDENT(3),LIBERIAN(5);
+	ADMIN(10), STUDENT(3),LIBERIAN(5),EXSTUDENT(0),NEWSTUDENT(0);
 	private final int maxBookBorrow;
 	
 	

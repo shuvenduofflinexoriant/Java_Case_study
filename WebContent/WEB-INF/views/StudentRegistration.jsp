@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-	body {font-family: Arial, Helvetica, sans-serif;
+	body {font-family: cursive;
 	background-color:Ivory!important;
 		 font-style: italic;}
 
@@ -16,9 +16,11 @@
 .form-inline
 {
 
-	margin-left:50px;
+	margin-left:180px;
 	border:2px solid black;
 	margin-top:30px;
+	width:70%;
+	height:90%;
 	margin-bottom:10px;
 	
 }
@@ -27,7 +29,7 @@
 	  margin: 5px 10px 5px 0;
 	  width:50% !important;
 	  display: inline-block;
-	  margin-left:200px;
+	  margin-left:100px;
 	  font-weight:bold !important;
 	}
 	
@@ -35,7 +37,7 @@
 
 	  margin-top:15px;
 	  margin-bottom:15px;
-	  margin-left:-300px !important;
+	  margin-left:-200px !important;
 	  padding: 10px;
 	  background-color: #fff;
 	  width:40%!important;
@@ -60,10 +62,12 @@
 	h3
 	{
 		margin-top:10px;
-		margin-left:40%;
+		margin-left:35%;
 		font-size:30px;
 		font-weight:bold!important;
-		color:white;
+		color:#06022B;
+		text-align:center;
+		width:350px;
 	}
 	}
 </style>
@@ -71,29 +75,30 @@
 
     <body>
     
-    	<h3 class="text-info">REGISTER STUDENT</h3>
+    	<h3 class=" bg-light text-dark">REGISTER STUDENT</h3>
         
    		<form class="form-inline" action="http://localhost:2121/Java_Case_Study/submitForm" method="post">
 	
 		
 		<label for="name"><b> Student Name:</b></label>
-		<input type="text" name="name" id="name" required>
+		<input type="text" name="name" id="name" placeholder="Enter Name" required>
 		<br/>
 		<label for="admissionDate"><b>Admission Date:</b></label>
-		<input type="date" name="admissionDate" id="admissionDate" required>
+		<input type="date" name="admissionDate" placeholder="Enter Admission Date" id="admissionDate" required>
 		<br/>
 		<label for="releaseDate"><b>Release Date:</b></label>
-		<input type="date" name="releaseDate" id="releaseDate" required>
+		<input type="date" name="releaseDate" placeholder="Enter Relese Date" id="releaseDate" required>
 		<br/>
 		<label for="address"><b>Address:</b></label>
-		<input type="text" name="address" id="address" required>
+		<input type="text" name="address" placeholder="Enter Address" id="address" required>
 		<br/>
 		<label for="contactNumber"><b>Contact Number:</b></label>
-		<input type="text" name="contactNumber" id="contactNumber" required>
+		<input type="text" name="contactNumber" placeholder="Enter Contact Number" id="contactNumber" required>
 		<br/>
 		
 		
 		<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+		
 	</form>
     </body>
 </html>
