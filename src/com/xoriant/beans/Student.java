@@ -2,8 +2,20 @@ package com.xoriant.beans;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="students")
 public class Student {
-	private String userId;
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@Column(name="userId")
+	private int userId;
 	private String name;
 	private Role role;
 	private Date admissionDate;
@@ -15,10 +27,10 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public String getName() {
@@ -74,6 +86,11 @@ public class Student {
 		return "Student [userId=" + userId + ", name=" + name + ", role=" + role + ", admissionDate=" + admissionDate
 				+ ", releaseDate=" + releaseDate + ", address=" + address + ", contactNumber=" + contactNumber
 				+ ", registrationNumber=" + registrationNumber + ", rollNumber=" + rollNumber + "]";
+	}
+	public Student(String name) {
+		super();
+		this.name = name;
+		this.role = role.NEWSTUDENT;
 	}
 	
 	

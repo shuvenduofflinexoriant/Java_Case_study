@@ -16,9 +16,10 @@ import com.xoriant.beans.Student;
 
 public interface LiberianDAO {
 	public boolean addBook(Book book);
-	public boolean approveStudentRegistration(Student student);
-	
-	public boolean approveBookReturn(IssuedBook issuedBook);
+	public List<Student> approveStudentRegistration();
+	public void getStudentById(int id , String rollno ,String reg);
+    public boolean approveBookReturn(IssuedBook issuedBook);
 	public double calculateFine(IssuedBook issuedBook);
 	public List<IssuedBook> viewAllBookBorrows();
+	public void addStudent() ;
 }

@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.xoriant.beans.Book;
 import com.xoriant.beans.BookType;
+import com.xoriant.beans.Role;
+import com.xoriant.beans.Student;
 import com.xoriant.dao.LiberianDAOImpl;
 
 
@@ -27,7 +29,7 @@ import com.xoriant.dao.LiberianDAOImpl;
 @Controller
 public class MyController {
 	
-
+	
 	
 //		
 //	@RequestMapping("/welcome/{userName}")
@@ -124,5 +126,38 @@ public class MyController {
 		return modelAndView;
 		
 	}
+	
+	
+	@RequestMapping(value="/approvestudent")
+	public ModelAndView approve() {
+		
+		LiberianDAOImpl liberianDaoImpl = new LiberianDAOImpl();
+		List<Student> studentData = liberianDaoImpl.approveStudentRegistration() ;
+		ModelAndView modelAndView = new ModelAndView("approveStudent");
+		modelAndView.addObject("studentData",studentData);
+		return modelAndView;
+		
+	}
+	
+	@RequestMapping(value="approveReturn/{userId}")
+	public ModelAndView statusChange(@PathVariable("userId") int userId) {
+		 //LiberianDAOImpl liberianDaoImpl = new LiberianDAOImpl();
+		 //liberianDaoImpl.getStudentById(userId);
+		ModelAndView modelAndView = new ModelAndView("studentdata");
+		modelAndView.addObject("userId",userId);
+		return modelAndView;
+		
+	}
+	
+	@RequestMapping(value="studentDataAdd/{userId}" ,method=RequestMethod.POST)
+	public ModelAndView statusChange1(@PathVariable("userId") int userId,@RequestParam("rollno") String rollno,@RequestParam("registration") String registration) {
+		 LiberianDAOImpl liberianDaoImpl = new LiberianDAOImpl();
+		 liberianDaoImpl.getStudentById(userId, rollno, registration);
+		
+		ModelAndView modelAndView = new ModelAndView("bookSuccess");
+		return modelAndView;
+		
+	}
+
 			
 }
