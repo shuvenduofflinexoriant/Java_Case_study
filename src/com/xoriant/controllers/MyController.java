@@ -1,74 +1,110 @@
 package com.xoriant.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.apache.el.parser.ParseException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.xoriant.beans.Book;
+import com.xoriant.beans.Role;
+import com.xoriant.beans.Student;
+import com.xoriant.dao.BookDaoImpl;
+import com.xoriant.dao.StudentDaoImpl;
+
+
 
 
 
 @Controller
-public class MyController {
-	
 
-	
-//		
-//	@RequestMapping("/welcome/{userName}")
-//	public ModelAndView sayHello(@PathVariable("userName") String name) {
-//		ModelAndView modelAndView = new ModelAndView("Welcome");
-//		modelAndView.addObject("msg", "Welcome "+name);
-//		return modelAndView;
-//	}
-//	
-//	
-//	
-//	@RequestMapping("/allexecutives")
-//	public ModelAndView showAllExecutives() {
-//		ModelAndView modelAndView = new ModelAndView("ShowExecutives");
-//		Client client = new Client();
-//		Set<Executive> executives = client.getService().populateExecutives(client.getService().populateRequests());
-//		List<Executive> executiveslist = executives.stream().sorted((e1,e2) -> e1.getExecutiveId() - e2.getExecutiveId()).collect(Collectors.toList());
-////		String executiveslist = "| executiveid | executive_name | department |<br/>+-------------+----------------+------------+";
-////		for(Executive executive : executives) {
-////			System.out.println(executive);
-////			executiveslist += "\n| "+executive.getExecutiveId()+" | "+executive.getExecutiveName()+" | "+executive.getDepartment()+" |";
-////		}
-//		
-//		modelAndView.addObject("executiveslist",executiveslist);
-//		
-//		//modelAndView.addObject(executiveslist);
-//		return modelAndView;
-//	}
-//	
-//	@RequestMapping("/allrequests")
-//	public ModelAndView showAllRequests() {
-//		ModelAndView modelAndView = new ModelAndView("ShowRequests");
-//		
-//		Client client = new Client();
-//		Set<Request> requestslist = client.getService().populateRequests();
-//        modelAndView.addObject("requestslist",requestslist);
-//		return modelAndView;
-//	}
-//	
-//	@RequestMapping("/empreq/{empId}")
-//	public ModelAndView sayHello(@PathVariable("empId") int empId) {
-//		ModelAndView modelAndView = new ModelAndView("ShowRequests");
-//		Client client = new Client();
-//		Set<Request> requestslist = client.getService().populateRequests().stream().filter(em -> em.getExecutiveId() == empId).collect(Collectors.toSet());
-//		 modelAndView.addObject("requestslist",requestslist);
-//		return modelAndView;
-//	}
-//	
+public class MyController {
+
 	@RequestMapping("/")
 	public ModelAndView welcomeHome() {
 		ModelAndView modelAndView = new ModelAndView("Welcome");
 		return modelAndView;
 	}
+	
+
+	
+	
+	@RequestMapping(value="/StudentRegistration")
+	public ModelAndView getStudent()
+	{
+		ModelAndView modelAndView = new ModelAndView("StudentRegistration");
+		System.out.println("Sucess!!!!");
+		return modelAndView;
+		
+		
+	}
+	
+	@RequestMapping(value="/submitForm",method=RequestMethod.POST)
+		public ModelAndView submitAdmissionForm(@RequestParam("name") String name,@RequestParam("address") String address, @RequestParam("contactNumber") String contactNumber, @RequestParam("registrationNumber") String registrationNumber, @RequestParam("rollNumber") String rollNumber,@RequestParam("admissionDate") String admissionDate, @RequestParam("releaseDate") String releaseDate) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		Student student = new Student();
+		student.setName(name);
+		student.setAddress(address);
+		student.setContactNumber(contactNumber);
+		student.setRollNumber(rollNumber);
+		student.setRegistrationNumber(registrationNumber);
+		try
+		{
+			Date date1 = formatter.parse(admissionDate);
+			Date date2 = formatter.parse(releaseDate);
+			
+			
+			student.setAdmissionDate(date1);
+			student.setReleaseDate(date2);
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("Invalid date formate");
+		}
+		
+		student.setRole(Role.STUDENT);
+		
+		ModelAndView modelAndView  = new ModelAndView("RegistrationSuccess");
+		modelAndView.addObject(student);
+		StudentDaoImpl studentDao = new StudentDaoImpl();
+		studentDao.addStudent(student);
+		
+		
+	
+		return modelAndView;
+	}
+	
+	@RequestMapping("/borrow")
+	public ModelAndView borrowBook() {
+		ModelAndView modelAndView = new ModelAndView("BorrowBook");
+		BookDaoImpl bookDao = new BookDaoImpl();
+		Book book = new Book();
+		book = bookDao.addBook();
+		List<Book> books = bookDao.getAllBooks();
+		
+		System.out.println(books);
+		modelAndView.addObject("books",books);
+		return modelAndView;
+	}
+
+	
+	@RequestMapping(value="/SearchBook")
+	public ModelAndView getBook()
+	{
+		ModelAndView modelAndView = new ModelAndView("SearchBook");
+		return modelAndView;
+	}
+	
+	
 }

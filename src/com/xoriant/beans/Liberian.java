@@ -4,11 +4,13 @@ public class Liberian {
 	private String userId;
 	private String name;
 	private Role role;
+	
 	public Liberian(String name) {
-		super();
+
 		this.name = name;
 		this.role = Role.LIBERIAN;
 	}
+	
 	public String getUserId() {
 		return userId;
 	}

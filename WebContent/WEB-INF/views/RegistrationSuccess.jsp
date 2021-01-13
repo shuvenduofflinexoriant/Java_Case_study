@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Welcome</h2>
-	 <a href="StudentRegistration">Register Student</a>
-	 <a href="SearchBook">Search Book</a>
-	 <a href="borrow">Borrow Book</a>
 	
+	Student :${student.name} 's data is registered successfully 
 </body>
 </html>

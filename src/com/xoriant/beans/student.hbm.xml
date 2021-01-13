@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd"> 
+
+<hibernate-mapping package="com.xorinat.beans">
+	<class name="Student" table="student_data">
+		<id name="userId" column="user_Id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="studentName" column="studentName"></property>
+		<property name="admissionDate" column="admissionDate"></property>
+		<property name="releaseDate" column="releaseDate"></property>
+		<property name="address" column="studentAddress"></property>
+		<property name="contactNumber" column="contactNumber"></property>
+		<property name="registrationNumber" column="registrationNumber"></property>
+		<property name="rollNumber" column="rollnumber"
+	</class>
+</hibernate-mapping>
