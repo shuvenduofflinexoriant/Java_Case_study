@@ -20,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.xoriant.beans.Book;
 import com.xoriant.beans.BookType;
+import com.xoriant.beans.Liberian;
 import com.xoriant.beans.Role;
 import com.xoriant.beans.Student;
+import com.xoriant.dao.AdminDaoImpl;
 import com.xoriant.dao.LiberianDAOImpl;
 
 
@@ -158,6 +160,23 @@ public class MyController {
 		return modelAndView;
 		
 	}
-
+	
+	@RequestMapping(value="/addliberian" , method= RequestMethod.GET) 
+	public ModelAndView getForm1() {
+		ModelAndView modelAndView = new ModelAndView("addLiberian");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/liberianadded", method=RequestMethod.POST)
+     public ModelAndView addLib(@RequestParam("liberianName") String liberianName) {
+		
+		Liberian liberian = new Liberian(liberianName) ;
+		AdminDaoImpl adminDaoImpl = new AdminDaoImpl() ;
+		adminDaoImpl.addLiberian(liberian);
+		ModelAndView modelAndView = new ModelAndView("bookSuccess");
+		
+		return modelAndView;
+		
+	}
 			
 }

@@ -17,6 +17,7 @@
       
       <mapping class="com.xoriant.beans.Book"/>
       <mapping class="com.xoriant.beans.Student"/> 
+      <mapping class="com.xoriant.beans.Liberian"/> 
     
    </session-factory>
 </hibernate-configuration>  

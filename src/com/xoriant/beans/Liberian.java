@@ -1,6 +1,21 @@
 package com.xoriant.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="liberian")
 public class Liberian {
+	
+	@Id
+	@GenericGenerator(name = "sequence_liberian_id", strategy = "com.xoriant.generators.StudentIdGenerator")
+	@GeneratedValue(generator = "sequence_liberian_id")
 	private String userId;
 	private String name;
 	private Role role;

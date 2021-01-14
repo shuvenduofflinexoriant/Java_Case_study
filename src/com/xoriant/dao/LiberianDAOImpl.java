@@ -69,7 +69,7 @@ private SessionFactory factory ;
 	
 		
 	
-
+   // this function is dummy function to check the module of approveStudent
 	@Override
 	public void addStudent() {
 		// TODO Auto-generated method stub
