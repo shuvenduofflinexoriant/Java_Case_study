@@ -5,9 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+	body {
+
+	
+	font-family: cursive;
+	background-color: rgba(218, 247, 166 );
+	font-style: italic;
+	background-image:url("https://www.xmple.com/wallpaper/linear-gradient-violet-pink-2560x1440-c2-d5caf0-f0cad9-a-255-f-14.svg")
+		 }
+		 
+
+</style>
 </head>
 <body>
-	<h1>Student: ${student.name }'s data is registered successfully</h1>
+	<h1 class="text-sucess bg-light">Student: ${student.name }'s data is registered successfully</h1>
 	
 </body>
 </html>

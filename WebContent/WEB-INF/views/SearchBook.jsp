@@ -23,33 +23,49 @@
 <title>Insert title here</title>
 
 <style>
-	body
-	{
-		background-color:Ivory!important;
-		 font-style: italic;
-		 font-family: Arial, Helvetica, sans-serif;
-	}
+	body {
+
+	
+	font-family: cursive;
+	background-color: rgba(218, 247, 166 );
+	font-style: italic;
+	background-image:url("https://www.xmple.com/wallpaper/linear-gradient-violet-pink-2560x1440-c2-d5caf0-f0cad9-a-255-f-14.svg")
+		 }
+		 
+		 
 	h3
 	{
-		margin-left:350px;
-		margin-top:10px !important;
-		position:fixed!important;
-		font-size:50px;
+		margin-top:50px;
+		margin-left:40%;
+		font-size:35px;
+		font-weight:bold!important;
+		color:#1F5480;
+	}
+	td
+	{
+		color:#5DD87C!important;
+		font-size:15px;
+		font-weight:bold;
+		text-align:center;
 	}
 	input
 	{	
-		width: 350px !important;
+		width: 500px !important;
 		text-align :center !important;
 		height:40px!important;
-		padding-bottom:10px !important;
-		margin-left:350px;
-		margin-top:50px;
-		position:fixed!important;
+		
+		margin-left:400px;
+		margin-top:0px;
+		
 	}
 	
 	table
 	{ 
-	margin-left:10px;
+	margin-left:90px;
+	width:90% !important;
+	margin-top:-20px;
+	margin-right:10px;
+	
 	}
 	button
 	{
@@ -69,7 +85,7 @@
 <body>
 	<div class="row">
 		<div class="col-md-12">
-			<h3 class="text-info">SEARCH BOOK</h3>
+			<h3>SEARCH BOOK</h3>
 		</div>
 	</div>
 	</br>
@@ -94,7 +110,7 @@
 	</br>
 	</br>
 	<table class="table table-striped" border=1, cellpadding="5" >
-		<thead class="thead-light">
+		<thead class="thead-dark">
 			<tr>
 		
 				<th>Book Id</th>
@@ -116,7 +132,7 @@
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				
 				//3.create connection
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementdb","root","admin");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementdb","root","anjali");
 				
 				System.out.println("Connected");
 				
@@ -144,17 +160,17 @@
 			
 			
 			<tr>
-	      			<td><%=res.getString("bookId") %></td>
-	      			<td><%=res.getString("bookName") %></td>
-	      			<td><%=res.getString("bookType") %></td>
-	      			<td><%=res.getString("author") %></td>
-	      			<td><%=res.getString("publication") %></td>
-	      			<td><%=res.getString("availableQuantity") %></td>
-	      			<td><%=res.getString("totalQuantity") %></td>
-	      			<td><%=res.getString("description") %></td>
+	      			<td  class="text-primary" ><%=res.getString("bookId") %></td>
+	      			<td  class="text-primary"><%=res.getString("bookName") %></td>
+	      			<td class="text-primary"><%=res.getString("bookType") %></td>
+	      			<td class="text-primary"><%=res.getString("author") %></td>
+	      			<td class="text-primary"><%=res.getString("publication") %></td>
+	      			<td class="text-primary"><%=res.getString("availableQuantity") %></td>
+	      			<td class="text-primary"><%=res.getString("totalQuantity") %></td>
+	      			<td class="text-primary"><%=res.getString("description") %></td>
 	      			<%if(Integer.parseInt(res.getString("availableQuantity"))>0){ %>
-	  	  			<td><button class="btn btn-primary" onclick="window.location='http://localhost:8016/Java_Case_Study/borrow/<%=res.getString("bookId")%>'"  type="submit">ISSUE</button>
-	  	  			<% }else {%><td><button class="btn btn-primary" disabled type="submit">Book not available</button></td><%}; %>
+	  	  			<td><button class="btn btn-success" onclick="window.location='http://localhost:8016/Java_Case_Study/borrow/<%=res.getString("bookId")%>'"  type="submit">ISSUE</button>
+	  	  			<% }else {%><td><button class="btn btn-danger" disabled type="submit">Book not available</button></td><%}; %>
 	    		</tr>
 	    		<%
 				}

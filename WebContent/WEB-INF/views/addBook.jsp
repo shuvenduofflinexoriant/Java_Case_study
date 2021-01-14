@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <title>Insert title here</title>
 <style type="text/css">
 label{
@@ -13,6 +14,15 @@ label{
    margin: 2px 2px 2px 2px ;
    text-align: left ;
 }
+body {
+
+	
+	font-family: cursive;
+	background-color: rgba(218, 247, 166 );
+	font-style: italic;
+	background-image:url("https://www.xmple.com/wallpaper/linear-gradient-violet-pink-2560x1440-c2-d5caf0-f0cad9-a-255-f-14.svg")
+		 }
+		 
 </style>
 </head>
 <body>

@@ -9,8 +9,8 @@
 <style type="text/css">
 	body {font-family: Arial, Helvetica, sans-serif;
 	background-color:Ivory!important;
-		 font-style: italic;}
-	
+		 font-style: italic;
+		 
 .form-inline
 {
 	margin-left:50px;

@@ -5,11 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Book Return Success!</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style type="text/css">
-body{
-	height: 100%;
-	width: 100%;
-}
+body {
+
+	
+	font-family: cursive;
+	width:100%;
+	height:100%;
+	background-color: rgba(218, 247, 166 );
+	font-style: italic;
+	background-image:url("https://www.xmple.com/wallpaper/linear-gradient-violet-pink-2560x1440-c2-d5caf0-f0cad9-a-255-f-14.svg")
+		 }
+		 
 
 h2{
    margin: auto auto ;
@@ -23,7 +31,7 @@ a{
 
 </head>
 <body>
-	<h2>Book Return Success!</h2>
+	<h2 class="text-success bg-light">Book Return Success!</h2>
 	<a href="/">HOME</a>
 </body>
 </html>
