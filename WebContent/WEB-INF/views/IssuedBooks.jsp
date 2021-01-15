@@ -33,5 +33,25 @@ Return Book
   </c:forEach>
 </table>
 
+
+Requested Return Books
+<table>
+<thead>
+		<tr>
+			<th>Book ID</th>
+			<th>Book Name</th>
+			<th>Book Status</th>
+		
+		</tr>
+	</thead>
+  <c:forEach items="${reqReturnedBooks}" var="reqReturnedBook">
+    <tr>
+      <td><c:out value="${reqReturnedBook.value.bookId}" /></td>
+      <td><c:out value="${reqReturnedBook.key}" /></td>
+      <td><c:out value="${reqReturnedBook.value.status}" /></td>
+     
+    </tr>
+  </c:forEach>
+</table>
 </body>
 </html>

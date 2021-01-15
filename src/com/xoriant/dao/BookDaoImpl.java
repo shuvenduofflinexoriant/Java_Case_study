@@ -70,6 +70,10 @@ public class BookDaoImpl implements BookDao{
 		student.setRole(Role.STUDENT);
 		session.update(student);
 		
+		IssuedBook ibook = session.get(IssuedBook.class,31 );
+		ibook.setStatus(Status.RETURNED);
+		session.update(ibook);
+		
 		Student student1 = session.get(Student.class,26);
 		student1.setRole(Role.STUDENT);
 		session.update(student1);
@@ -79,7 +83,8 @@ public class BookDaoImpl implements BookDao{
 		book3.setTotalQuantity(15);
 		book3.setBookType(BookType.STORYBOOK);
 		session.save(book3);*/
-
+		
+		
 		
 		String hql = "FROM Book b WHERE b.availableQuantity > 0";
 		TypedQuery<Book> query = session.createQuery(hql);
@@ -189,6 +194,30 @@ public class BookDaoImpl implements BookDao{
 		
 		for(IssuedBook issuedbook: issuedBooks) {
 			if(issuedbook.getStatus().equals(Status.REQUESTEDRETURN)) {
+				Book book = session.get(Book.class,issuedbook.getBookId());
+				ibooks.put(book.getBookName(), issuedbook);
+			}
+			
+		}
+		
+		txn.commit();
+		session.close();
+		return ibooks;
+	}
+
+	@Override
+	public Map<String, IssuedBook> getAllReturnedBooks(Integer userId) {
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		
+		Map<String,IssuedBook> ibooks = new LinkedHashMap<String,IssuedBook>();
+		
+		String hql = "FROM IssuedBook i WHERE i.student.userId = "+userId;
+		TypedQuery<IssuedBook> query = session.createQuery(hql);
+		List<IssuedBook> issuedBooks = query.getResultList();
+		
+		for(IssuedBook issuedbook: issuedBooks) {
+			if(issuedbook.getStatus().equals(Status.RETURNED)) {
 				Book book = session.get(Book.class,issuedbook.getBookId());
 				ibooks.put(book.getBookName(), issuedbook);
 			}

@@ -61,6 +61,7 @@ public class MyController {
 		
 		BookDaoImpl bookDao = new BookDaoImpl();
 		modelAndView.addObject("issuedBooks",bookDao.getAllIssuedBooks(13));
+		modelAndView.addObject("reqReturnedBooks",bookDao.getAllRequestedReturnBooks(13));
 		
 		return modelAndView;
 	}
@@ -79,7 +80,7 @@ public class MyController {
 	public ModelAndView returnedBooks() {
 		ModelAndView modelAndView= new ModelAndView("ReturnedBooks");
 		BookDaoImpl bookDao = new BookDaoImpl();
-		modelAndView.addObject("issuedBooks",bookDao.getAllRequestedReturnBooks(13));
+		modelAndView.addObject("returnedBooks",bookDao.getAllReturnedBooks(13));
 	
 		return modelAndView;
 	}

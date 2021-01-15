@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,11 +19,11 @@ Returned Books
 		
 		</tr>
 	</thead>
-  <c:forEach items="${issuedBooks}" var="issuedBook">
+  <c:forEach items="${returnedBooks}" var="returnedBook">
     <tr>
-      <td><c:out value="${issuedBook.value.bookId}" /></td>
-      <td><c:out value="${issuedBook.key}" /></td>
-      <td><c:out value="${issuedBook.value.status}" /></td>
+      <td><c:out value="${returnedBook.value.bookId}" /></td>
+      <td><c:out value="${returnedBook.key}" /></td>
+      <td><c:out value="${returnedBook.value.status}" /></td>
      
     </tr>
   </c:forEach>

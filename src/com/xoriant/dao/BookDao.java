@@ -13,4 +13,5 @@ public interface BookDao {
 	public void returnBook(Integer issueId);
 	public Map<String,IssuedBook> getAllIssuedBooks(Integer userId);
 	public Map<String,IssuedBook> getAllRequestedReturnBooks(Integer userId);
+	public Map<String,IssuedBook> getAllReturnedBooks(Integer userId);
 }
