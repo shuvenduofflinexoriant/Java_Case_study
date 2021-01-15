@@ -70,14 +70,7 @@ body {
 				
 					</div>
 					<br /> 
-					<div class="form-group row">
-						<label for="availableQuantity" class="col-sm-2 col-form-label">
-							Available Quantity</label>
-						
-							<input type="number" name="availableQuantity">
 				
-					</div>
-					<br /> 
 					
 						<div class="form-group row">
 						<label for="publishDate" class="col-sm-2 col-form-label">

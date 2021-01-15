@@ -13,7 +13,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.xoriant.beans.Book;
+import com.xoriant.beans.Login;
 import com.xoriant.beans.Student;
+import com.xoriant.commonutil.Utility;
 
 public class StudentDaoImpl implements StudentDao {
 	
@@ -28,12 +30,14 @@ public class StudentDaoImpl implements StudentDao {
 	
 
 	@Override
-	public String addStudent(Student student) {
+	public String addStudent(Student student,String password) {
 		// TODO Auto-generated method stub
+	
 		Session session =  factory.openSession();
 		Transaction txn = session.beginTransaction();
 		
 		String userId1 = (String) session.save(student);
+		boolean studentcreated = new LoginDAOImpl().register(userId1, password);
 		txn.commit();
 		session.close();
 		System.out.println("Saved Successfully");
@@ -67,6 +71,19 @@ public class StudentDaoImpl implements StudentDao {
 		txn.commit();
 		session.close();
 		return books;
+	}
+
+
+	@Override
+	public Student getStudentById(String userId) {
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		String hql = "From Student s where s.userId = '"+userId+"'";
+		TypedQuery<Student> query = session.createQuery(hql);
+		Student student = query.getSingleResult();
+		txn.commit();
+		session.close();
+		return student;
 	}
 
 }

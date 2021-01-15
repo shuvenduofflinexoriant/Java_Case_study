@@ -1,3 +1,4 @@
+<%@page import="com.xoriant.beans.BookType"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.xoriant.beans.Book"%>
 <%@page import="java.util.List"%>
@@ -83,6 +84,11 @@
 </style>
 </head>
 <body>
+<%@page import="java.util.List"%>     
+<%@page import="java.util.ArrayList"%> 
+<%@page import="com.xoriant.beans.Book"%>
+<%@page import="java.util.Iterator"%> 
+
 	<div class="row">
 		<div class="col-md-12">
 			<h3>SEARCH BOOK</h3>
@@ -94,7 +100,7 @@
 	<div>
 		<div class="col-md-12">
 		
-			<form action="" method="get">
+			<form action="/Java_Case_Study/searchBook" method="get">
 			
 				<input type="text"  class="form-control" name="keyword" placeholder="Search By Keyword"/>
 				
@@ -127,56 +133,29 @@
 		</thead>
 		<tbody>
 			<%
-			try {
-				//2.register the connection object
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				
-				//3.create connection
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymanagementdb","root","anjali");
-				
-				System.out.println("Connected");
-				
-				Statement st = con.createStatement();
-				
-				ResultSet res = null;
-					
-				String query = request.getParameter("keyword");
-				
-				String data;
-				if(query!=null)
-				{
-					data = "select * from books where bookName like '%"+query+"%' or bookId like '%"+query+"%' or author like '%"+query+"%' or publication like '%"+query+"%'";
-					
-				}
-				else
-				{
-					data = "select * from books";
-				}
-				res = st.executeQuery(data);
-				while(res.next())
-				{
-					
+			
+			List<Book> books =(ArrayList) request.getAttribute("books");
+			Iterator<Book> iterator = books.iterator(); 
+			while(iterator.hasNext())  // iterate through all the data until the last record
+			{
+				Book book = iterator.next(); 
 				%>
 			
 			
 			<tr>
-	      			<td  class="text-primary" ><%=res.getString("bookId") %></td>
-	      			<td  class="text-primary"><%=res.getString("bookName") %></td>
-	      			<td class="text-primary"><%=res.getString("bookType") %></td>
-	      			<td class="text-primary"><%=res.getString("author") %></td>
-	      			<td class="text-primary"><%=res.getString("publication") %></td>
-	      			<td class="text-primary"><%=res.getString("availableQuantity") %></td>
-	      			<td class="text-primary"><%=res.getString("totalQuantity") %></td>
-	      			<td class="text-primary"><%=res.getString("description") %></td>
-	      			<%if(Integer.parseInt(res.getString("availableQuantity"))>0){ %>
-	  	  			<td><button class="btn btn-success" onclick="window.location='http://localhost:8016/Java_Case_Study/borrow/<%=res.getString("bookId")%>'"  type="submit">ISSUE</button>
+	      			<td  class="text-primary" ><%=book.getBookId() %></td>
+	      			<td  class="text-primary"><%=book.getBookName() %></td>
+	      			<td class="text-primary"><%=book.getBookType()%></td>
+	      			<td class="text-primary"><%=book.getAuthor() %></td>
+	      			<td class="text-primary"><%=book.getPublication() %></td>
+	      			<td class="text-primary"><%=book.getAvailableQuantity() %></td>
+	      			<td class="text-primary"><%=book.getTotalQuantity() %></td>
+	      			<td class="text-primary"><%=book.getDescription() %></td>
+	      			<%if(book.getAvailableQuantity()>0){ %>
+	  	  			<td><button class="btn btn-success" onclick="window.location='http://localhost:8016/Java_Case_Study/borrow/<%=book.getBookId()%>'"  type="submit">ISSUE</button>
 	  	  			<% }else {%><td><button class="btn btn-danger" disabled type="submit">Book not available</button></td><%}; %>
 	    		</tr>
 	    		<%
-				}
-			}catch(Exception e)
-				{
-					e.printStackTrace();
 				}
 	  		%>
 	  		

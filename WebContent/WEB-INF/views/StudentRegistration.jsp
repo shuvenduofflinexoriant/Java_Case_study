@@ -87,6 +87,9 @@
 		<label for="contactNumber"><b>Contact Number:</b></label>
 		<input type="text" name="contactNumber" id="contactNumber" required>
 		<br/>
+		<label for="password"><b>Password :</b></label>
+		<input type="password" name="password" id="password" required>
+		<br/>
 		
 		
 		<button type="submit" class="btn btn-primary" id="submit">Submit</button>

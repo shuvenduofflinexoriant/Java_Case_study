@@ -8,9 +8,10 @@ import com.xoriant.beans.Student;
 
 public interface StudentDao {
 	
-	public String addStudent(Student student);
+	public String addStudent(Student student,String password);
 	public List<Book> searchBookByKeyword(int keyword);
 	public void issueBook();
 	public Book returnBook();
+	public Student getStudentById(String userId);
 
 }

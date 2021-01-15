@@ -19,8 +19,11 @@ import com.xoriant.beans.Liberian;
 import com.xoriant.beans.Role;
 import com.xoriant.beans.Status;
 import com.xoriant.beans.Student;
+import com.xoriant.dao.BookDaoImpl;
 import com.xoriant.dao.LiberianDAO;
 import com.xoriant.dao.LiberianDAOImpl;
+import com.xoriant.dao.LoginDAO;
+import com.xoriant.dao.LoginDAOImpl;
 import com.xoriant.exception.BookReturnDealyException;
 
 //Update return date
@@ -56,10 +59,10 @@ public class Client {
 		Liberian liberian = new Liberian("Sanket");
 		
 		
-		session.save(book);
-		session.save(student);
-		session.save(issuebook);
-		session.save(liberian);
+//		session.save(book);
+//		session.save(student);
+//		session.save(issuebook);
+//		session.save(liberian);
 		
 		
 		
@@ -90,6 +93,14 @@ public class Client {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
+		
+//		LoginDAO logindao = new LoginDAOImpl();
+//		//logindao.register("ST1", "test123");
+//		
+//		System.out.println(logindao.login("ST1", "test123"));
+		
+		System.out.println(new BookDaoImpl().getBookByKeyword("all"));
 
 	}
 	

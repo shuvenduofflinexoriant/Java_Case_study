@@ -16,7 +16,7 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
+import org.hibernate.query.Query;
 
 import com.xoriant.beans.Book;
 import com.xoriant.beans.BookType;
@@ -35,17 +35,8 @@ public class BookDaoImpl implements BookDao {
 	}
 	
 	@Override
-	public Book addBook() {
-		// TODO Auto-generated method stub
-		Book book = new Book();
-		book.setBookId(1);
-		book.setBookName("C++");
-		book.setBookType(BookType.REFERENCEBOOK);
-		book.setAuthor("BalaguruSwami");
-		book.setPublication("AAA");
-		book.setAvailableQuantity(5);
-		book.setTotalQuantity(5);
-		book.setDescription("Good One");
+	public Book addBook(Book book) {
+		
 		Session session =  factory.openSession();
 		Transaction txn = session.beginTransaction();
 		
@@ -176,5 +167,20 @@ public class BookDaoImpl implements BookDao {
 		txn.commit();
 		session.close();
 		return ibooks;
+	}
+
+	@Override
+	public List<Book> getBookByKeyword(String keyword) {
+		List<Book> books = null;
+		Session session =  factory.openSession();
+		Transaction txn = session.beginTransaction();
+		
+		String hql = "From Book b where b.bookName like '%"+keyword+"%' OR b.author like '%"+keyword+"%' OR b.publication like '%"+keyword+"%' OR b.description like '%"+keyword+"%'";
+		TypedQuery<Book> query = session.createQuery(hql);
+		books = query.getResultList();
+		txn.commit();
+		session.close();
+		
+		return books;
 	}
 }

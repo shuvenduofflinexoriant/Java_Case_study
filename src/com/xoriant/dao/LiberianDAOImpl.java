@@ -64,12 +64,6 @@ public class LiberianDAOImpl implements LiberianDAO {
 		IssuedBook issuedBook = query.getSingleResult();
 		
 		
-		//TODO remove the below code
-		String userId = "LIB1";
-		hql = "From Liberian WHERE userId = 'LIB1'"; // + userId;
-		TypedQuery<Liberian> queryLiberian = session.createQuery(hql);
-		liberian = queryLiberian.getSingleResult();
-		
 		Date today = new Date();
 		if(issuedBook.getFine() <= 0 && today.after(issuedBook.getReturningDate())) {
 			session.close();
@@ -135,14 +129,7 @@ public class LiberianDAOImpl implements LiberianDAO {
 
 		Session session = factory.openSession();
 		IssuedBook issuedBook = calculateFine(issuedId);
-		
-		//TODO remove the below code
-		String userId = "LIB1";
-		String hql = "From Liberian WHERE userId = 'LIB1'"; // + userId;
-		TypedQuery<Liberian> queryLiberian = session.createQuery(hql);
-		liberian = queryLiberian.getSingleResult();
-		
-		
+	
 		issuedBook.setApproverId(liberian.getUserId());
 		issuedBook.setStatus(Status.RETURNED);
 		
@@ -153,6 +140,47 @@ public class LiberianDAOImpl implements LiberianDAO {
 		
 		return issuedBook;
 		
+		
+	}
+
+	@Override
+	public Liberian getLiberianById(String userId) {
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		String hql = "From Liberian l where l.userId = '"+userId+"'";
+		TypedQuery<Liberian> query = session.createQuery(hql);
+		Liberian liberian = query.getSingleResult();
+		txn.commit();
+		session.close();
+		return liberian;
+	}
+	
+	
+	@Override
+	public List<Student>approveStudentRegistration() {
+		// TODO Auto-generated method stub
+		Session session = factory.openSession();
+		String hql = "From Student e where e.role = " + Role.NEWSTUDENT.ordinal() ;
+		TypedQuery<Student> query = session.createQuery(hql);
+		List<Student> studentData = query.getResultList();
+		session.close();
+		return studentData;
+	}
+	
+	
+	@Override
+	public void getStudentById(String userId, String rollno, String reg) {
+		// TODO Auto-generated method stub
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		Student student = (Student)session.get(Student.class, userId);
+		student.setRole(Role.STUDENT);
+		student.setRegistrationNumber(reg);
+		student.setRollNumber(rollno);
+		session.update(student);
+		System.out.println(student);
+		txn.commit();
+		session.close();
 		
 	}
 

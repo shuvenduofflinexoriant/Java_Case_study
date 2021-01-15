@@ -19,10 +19,14 @@ import com.xoriant.exception.BookReturnDealyException;
 public interface LiberianDAO {
 	public boolean addBook(Book book);
 	public boolean approveStudentRegistration(Student student);
-	
 	public boolean approveBookReturn(int issuedId, Liberian liberian) throws BookReturnDealyException;
 	public IssuedBook calculateFine(int issuedId);
 	public IssuedBook collectFine(int issuedId, Liberian liberian);
 	public List<IssuedBook> getAllBookIssued();
 	public List<IssuedBook> getAllBookReturnRequests();
+	public Liberian getLiberianById(String userId);
+	
+	
+	public List<Student> approveStudentRegistration(); //this function is to get list of student with role as NewStudent
+	public void getStudentById(String id , String rollno ,String reg); // this function update the following student id with assigned role,rollno,registration number
 }
