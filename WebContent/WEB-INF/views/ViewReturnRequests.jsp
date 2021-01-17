@@ -118,7 +118,11 @@ if(request.getAttribute("issuedBooks") != null && !issuedBooks.isEmpty())  // Nu
 	}
 }else{
 	%>
-	No Return Request Present!
+	
+	<div class="alert alert-success " style="margin-left:400px; margin-top:60px; width:50%; text-align:center;">
+ 		
+  			<strong>Success!</strong> No return request present
+	</div>
 	<%
 }
 %>
