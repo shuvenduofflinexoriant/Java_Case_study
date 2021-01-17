@@ -11,6 +11,7 @@
 	background-color:Ivory!important;
 		 font-style: italic;
 		 background-image:url("https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.png");
+		 
 	}
 		 
 

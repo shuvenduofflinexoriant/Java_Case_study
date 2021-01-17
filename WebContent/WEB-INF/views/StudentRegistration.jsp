@@ -80,7 +80,7 @@
     
     	<h3 class="text-info">REGISTER STUDENT</h3>
         
-   		<form class="form-inline" action="http://localhost:8016/Java_Case_Study/logout" method="get">
+   		<form class="form-inline" action="http://localhost:8016/Java_Case_Study/submitForm" method="POST">
 	
 		
 		<label for="name"><b> Student Name:</b></label>

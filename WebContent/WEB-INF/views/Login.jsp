@@ -26,19 +26,33 @@ body {
 h3
 	{
 		margin-top:50px;
-		margin-left:32%;
+		margin-left:20%;
 		font-size:35px;
+		color:white;
+		 font-family:cursive;
+    	font-style:normal ;
 		font-weight:bold!important;
 		
 	}
 .card
 {
 	margin-left:-250px !important;
-	margin-top:30px;
+	margin-top:20px;
 	 background:lavender;
 	width:100% !important;
-	height:20% important;
-}	 
+	height:30% important;
+}	
+
+#heading
+{
+	width:60% !important;
+	height:30% !importnat;
+	padding-bottom:5px;
+	margin-left:200px;
+
+	
+	
+} 
 h2
 {
 	text-align:center;
@@ -62,7 +76,12 @@ button
 </style>
 </head>
 <body>
-<h3 class="text-info">Library Management System</h3>
+<div class="container-fluid">
+	 <div class="bg-dark " id="heading">
+		<h3>Library Management System </h3>
+	</div>
+</div>
+
 
 <!-- Modal HTML -->
 <div class="app mt-8">
