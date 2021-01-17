@@ -18,7 +18,11 @@
 </style>
 </head>
 <body>
-	<h1 class="text-sucess bg-light">Student: ${student.name }'s data is registered successfully</h1>
+
+	 <div class="alert alert-danger alert-dismissible" style="margin-left:300px; margin-top:30px; width:50%; text-align:center;">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>Success!</strong> Student: ${student.name }'s data is registered successfully
+	</div>
 	
 </body>
 </html>

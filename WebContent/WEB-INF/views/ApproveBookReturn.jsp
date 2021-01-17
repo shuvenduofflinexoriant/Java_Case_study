@@ -29,6 +29,7 @@ a{
 </head>
 <body>
 	<h2 class="text-success bg-light">Book Return Success!</h2>
+	
 	<a href="/">HOME</a>
 </body>
 </html>
