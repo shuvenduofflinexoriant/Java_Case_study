@@ -85,6 +85,7 @@
 			    <th> Release Date</th>
 			    <th> Address</th>
 			    <th> Contact Number</th>
+			    <th>Action</th>
     		</tr>
 		</thead>
 	<tbody>
