@@ -8,14 +8,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 <style>
-	body {
-
-	
-	font-family: cursive;
-	background-color: rgba(218, 247, 166 );
-	font-style: italic;
-	background-image:url("https://i.pinimg.com/originals/af/11/bc/af11bc7d20dc8d2cbac2b7f7ad30fa15.jpg")
-		 }
+		body {font-family: Arial, Helvetica, sans-serif;
+	background-color:Ivory!important;
+		 font-style: italic;
+		 background-image:url("https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.png");
+	}
 		 
 		 
 	h3
@@ -41,7 +38,7 @@
 		height:40px!important;
 		
 		margin-left:400px;
-		margin-top:0px;
+		margin-top:-10px;
 		
 	}
 	
@@ -49,7 +46,7 @@
 	{ 
 	margin-left:85px;
 	width:90% !important;
-	margin-top:200px;
+	margin-top:180px;
 	margin-right:10px;
 	
 	}
@@ -80,7 +77,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h3>VIEW ALL ISSUED BOOKS</h3>
+		<h3>ISSUED BOOKS</h3>
 	</div>
 </div>
 

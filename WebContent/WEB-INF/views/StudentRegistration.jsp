@@ -10,13 +10,15 @@
 	body {font-family: Arial, Helvetica, sans-serif;
 	background-color:Ivory!important;
 		 font-style: italic;
-		 
+		 background-image:url("https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.png");
+	}	 
 .form-inline
 {
-	margin-left:50px;
+	margin-left:220px;
 	border:2px solid black;
 	margin-top:30px;
 	margin-bottom:10px;
+	width:60% !important;
 	
 }
 	
@@ -24,14 +26,16 @@
 	  margin: 5px 10px 5px 0;
 	  width:50% !important;
 	  display: inline-block;
-	  margin-left:200px;
+	  margin-left:90px;
+		margin-top:50px;
+		
 	  font-weight:bold !important;
 	}
 	
 	.form-inline input {
-	  margin-top:15px;
-	  margin-bottom:15px;
-	  margin-left:-300px !important;
+
+		margin-top:-50px;
+	 	margin-left:280px;
 	  padding: 10px;
 	  background-color: #fff;
 	  width:40%!important;
@@ -43,10 +47,10 @@
 	  border: 1px solid #ddd;
 	  color: white;
 	  cursor: pointer;
-	  margin-top:15px;
+	  margin-top:80px;
 	  width:25%;
-	  margin-bottom:10px;
-	  margin-left:36% !important;
+		margin-bottom:20px;
+	  margin-left:-40% !important;
 	}
 	
 	.form-inline button:hover {
@@ -56,43 +60,50 @@
 	h3
 	{
 		margin-top:10px;
-		margin-left:40%;
+		margin-left:35%;
 		font-size:30px;
 		font-weight:bold!important;
-		color:white;
+		
 	}
+	#password
+	{
+		margin-top:-180px !important;
 	}
+	
+	
 </style>
+
+
 </head>
 
     <body>
     
     	<h3 class="text-info">REGISTER STUDENT</h3>
         
-   		<form class="form-inline" action="http://localhost:8016/Java_Case_Study/submitForm" method="post">
+   		<form class="form-inline" action="http://localhost:8016/Java_Case_Study/logout" method="get">
 	
 		
 		<label for="name"><b> Student Name:</b></label>
-		<input type="text" name="name" id="name" required>
-		<br/>
+		<input type="text" name="name" id="name" required >
+		
 		<label for="admissionDate"><b>Admission Date:</b></label>
 		<input type="date" name="admissionDate" id="admissionDate" required>
-		<br/>
+		
 		<label for="releaseDate"><b>Release Date:</b></label>
 		<input type="date" name="releaseDate" id="releaseDate" required>
-		<br/>
+	
 		<label for="address"><b>Address:</b></label>
-		<input type="text" name="address" id="address" required>
-		<br/>
+		<input type="text" name="address" id="address" required >
+
 		<label for="contactNumber"><b>Contact Number:</b></label>
 		<input type="text" name="contactNumber" id="contactNumber" required>
-		<br/>
+	
 		<label for="password"><b>Password :</b></label>
 		<input type="password" name="password" id="password" required>
-		<br/>
+	
 		
 		
-		<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+		<button class="btn btn-primary" id="submitbutton" type="submit" value="Submit" >Submit</button>
 	</form>
     </body>
 </html>

@@ -4,23 +4,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Home</title>
 <style>
+	body {font-family: Arial, Helvetica, sans-serif;
+	background-color:Ivory!important;
+		 font-style: italic;
+		 background-image:url("https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.png");
+	}
 .profile-main {
-	margin: auto auto;
+	margin-top:0px;
 	display: flex;
 	flex-direction: row;
 	padding: 5rem;
 	align-content: center;
 	text-align: center;
 }
+.card
+{
+	width:100% !important;
+	
+}
+
+
 
 .malert {
-	position: absolute;
+	margin-top:-530px !important;
 	right: 50px;
 	top: 50px;
 	width: 500px;
-	height: 20px;
+	height: 80px;
+	margin-left:700px;
 	z-index: 1;
 	border-radius: 5px;
 	border: solid 1px rgb(204, 82, 82);
@@ -34,7 +49,9 @@
 }
 
 .right {
-	margin: auto 0;
+	margin-top:400px;
+
+	
 }
 
 .right>button {
@@ -56,6 +73,11 @@
 
 .details h1, h4 {
 	margin: 0;
+}
+.card-body
+{
+	font-size:20px;
+	display:inline-block!important;
 }
 </style>
 <link rel="stylesheet"
@@ -104,17 +126,27 @@
 				transform="translate(-251 -101)" fill="#333" />
 			<ellipse cx="194.86" cy="372.3" rx="14.09" ry="26.42" fill="#fdb797" />
 			<ellipse cx="497.8" cy="372.3" rx="14.09" ry="26.42" fill="#fdb797" /></svg>
-			<div class="details">
-				<h1><%=request.getAttribute("name")%></h1>
-				<h4>STUDENT</h4>
-				<h4>ID :<%=request.getAttribute("id")%></h4>
-				<h4>Registration : <%=request.getAttribute("regno")%></h4>
-				<h4>Roll : <%=request.getAttribute("rollno")%></h4>
-				<h4>Address : <%=request.getAttribute("address")%></h4>
-				<h4>Admission Date : <%=request.getAttribute("admission")%></h4>
+			<div class="card">
+				<div class="card-header">
+					<h1><%=request.getAttribute("name")%></h1>
+				</div>
+				<div class="card-body">
+					
+					Role : STUDENT
+					<br></br>
+					ID :<%=request.getAttribute("id")%>
+						<br></br>
+					Registration Number : <%=request.getAttribute("regno")%>
+						<br></br>
+					Roll Number : <%=request.getAttribute("rollno")%>
+						<br></br>
+					Address : <%=request.getAttribute("address")%>
+						<br></br>
+					Admission Date : <%=request.getAttribute("admission")%>
+				</div>
 			</div>
 		</div>
-		<div class="right">
+		<div class="right" >
 			<button
 				onclick="window.location='http://localhost:8016/Java_Case_Study/SearchBook'">
 				<i class="fa fa-search" aria-hidden="true"></i> SEARCH BOOK
@@ -128,7 +160,7 @@
 				<i class="fa fa-history" aria-hidden="true"></i> BORROWED HISTORY
 			</button>
 			<button
-				onclick="window.location='http://localhost:8016/Java_Case_Study/logout'">
+				onclick="window.location='http://localhost:8016/Java_Case_Study/logout'" >
 				<i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT
 			</button>
 		</div>

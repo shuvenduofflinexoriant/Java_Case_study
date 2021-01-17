@@ -8,96 +8,107 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <title>Insert title here</title>
 <style type="text/css">
-label{
-   display: inline-block ;
-   width: 200px ;
-   margin: 2px 2px 2px 2px ;
-   text-align: left ;
-}
-body {
 
+	body {font-family: Arial, Helvetica, sans-serif;
+	background-color:Ivory!important;
+		 font-style: italic;
+		 background-image:url("https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.png");
+	}	 
+.form-inline
+{
+	margin-left:220px;
+	border:2px solid black;
+	margin-top:30px;
+	margin-bottom:10px;
+	width:60% !important;
 	
-	font-family: cursive;
-	background-color: rgba(218, 247, 166 );
-	font-style: italic;
-	background-image:url("https://www.xmple.com/wallpaper/linear-gradient-violet-pink-2560x1440-c2-d5caf0-f0cad9-a-255-f-14.svg")
-		 }
-		 
+}
+	
+	.form-inline label {
+	  margin: 5px 10px 5px 0;
+	  width:50% !important;
+	  display: inline-block;
+	  margin-left:90px;
+		margin-top:50px;
+		
+	  font-weight:bold !important;
+	}
+	
+	.form-inline input {
+
+		margin-top:-50px;
+	 	margin-left:280px;
+	  padding: 10px;
+	  background-color: #fff;
+	  width:40%!important;
+	}
+	
+	.form-inline button {
+	  padding: 10px 20px;
+	  background-color: dodgerblue;
+	  border: 1px solid #ddd;
+	  color: white;
+	  cursor: pointer;
+	  margin-top:80px;
+	  width:25%;
+		margin-bottom:20px;
+	  margin-left:-40% !important;
+	}
+	
+	.form-inline button:hover {
+	  background-color: royalblue;
+	}
+	
+	h3
+	{
+		margin-top:10px;
+		margin-left:40%;
+		font-size:30px;
+		font-weight:bold!important;
+		
+	}
+	#password
+	{
+		margin-top:-180px !important;
+	}
+	
+	
 </style>
+
+	 
+
 </head>
 <body>
-      
-  <div class="container" align="center">
-		<div class="card">
-			<div class="card-body">
-				<form action="http://localhost:8016/Java_Case_Study/bookAddSubmit" method="post">
-					<div class="form-group row">
-						<label for="bookName" class="col-sm-2 col-form-label">Book
-							name:</label>
-							<input type="text" name="bookName">
+      <h3 class="text-info">ADD BOOK</h3>
+	<form class="form-inline" action="http://localhost:8016/Java_Case_Study/bookAddSubmit" method="POST">
+	
+		
+		<label for="bookName"><b> Book Name:</b></label>
+		<input type="text" name="bookName" id="bookName" required >
+		
+		<label for="author"><b>Author:</b></label>
+		<input type="text" name="author" id="author" required>
+		
+		<label for="publication"><b>Publication:</b></label>
+		<input type="text" name="publication" id="publication" required>
+	
+		<label for="description"><b>Description:</b></label>
+		<input type="text" name="description" id="description"required >
 
-					</div>
-					<br />
-					<div class="form-group row">
-						<label for="author" class="col-sm-2 col-form-label">
-							 Author:</label>
-						
-							<input type="text" name="author">
-						
-					</div>
-					<br /> 
-					<div class="form-group row">
-						<label for="publication" class="col-sm-2 col-form-label">
-							Publication:</label>
-						
-							<input type="text" name="publication">
-						
-					</div>
-					<br /> 
-					<div class="form-group row">
-						<label for="description" class="col-sm-2 col-form-label">
-							Description:</label>
-						
-							<input type="text" name="description">
-						
-					</div>
-					<br /> 
-					<div class="form-group row">
-						<label for="totalQuantity" class="col-sm-2 col-form-label">
-							Total Quantity</label>
-						
-							<input type="number" name="totalQuantity">
-				
-					</div>
-					<br /> 
-				
-					
-						<div class="form-group row">
-						<label for="publishDate" class="col-sm-2 col-form-label">
-							Publish Date</label>
-						
-							<input type="Date" name="publishDate">
-					
-					</div>
-					<br />
-					<div class="form-group row">
-						<label for="availableOn" class="col-sm-2 col-form-label">
-							Available On</label>
-							<input type="Date" name="availableOn">
-					</div>
-					<br />
-					<div class="form-group row">
-						<label for="bookType" class="col-sm-2 col-form-label">
-							 Book Type</label>
-							<input type="text" name="bookType">
-					</div>
-					<br />
-					
-					
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
-			</div>
-		</div>
-	</div>
+		<label for="totalQuantity"><b>Total Quantity:</b></label>
+		<input type="number" name="totalQuantity" id="totalQuantity" required>
+	
+		<label for="publishDate"><b>Publish Date:</b></label>
+		<input type="date" name="publishDate" id="publishDate" required>
+		
+		<label for="availableOn"><b>Available On:</b></label>
+		<input type="date" name="availableOn" id="availableOn" required>
+		
+		<label for="bookType"><b>Book Type:</b></label>
+		<input type="text" style="margin-top:-160px;" name="bookType" id="bookType" required>
+		
+		
+		<button class="btn btn-primary" id="submitbutton" type="submit" value="Submit" >Submit</button>
+	</form>
 </body>
 </html>

@@ -9,14 +9,11 @@
 <title>Insert title here</title>
 <style>
 
-body {
-
-	
-	font-family: cursive;
+	body {font-family: Arial, Helvetica, sans-serif;
 	background-color:Ivory!important;
-	font-style: italic;
-	background-image:url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8bGlicmFyeXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80")
-		 }
+		 font-style: italic;
+		 background-image:url("https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.png");
+	}
 		 
 		 
 	h3

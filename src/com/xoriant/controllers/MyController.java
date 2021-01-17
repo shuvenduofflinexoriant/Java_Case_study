@@ -1,6 +1,6 @@
 package com.xoriant.controllers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -400,7 +400,7 @@ public class MyController {
     		 @RequestParam("confirmpassword") String confirmpassword
     		 ) {
 		
-		if(password != confirmpassword) {
+		if(!password.equals(confirmpassword)) {
 			ModelAndView modelAndView = new ModelAndView("addLiberian");
 			modelAndView.addObject("error","Password dont match!");
 			return modelAndView;

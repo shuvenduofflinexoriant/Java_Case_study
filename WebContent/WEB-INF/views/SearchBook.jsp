@@ -24,14 +24,11 @@
 <title>Insert title here</title>
 
 <style>
-	body {
-
-	
-	font-family: cursive;
-	background-color: rgba(218, 247, 166 );
-	font-style: italic;
-	background-image:url("https://www.xmple.com/wallpaper/linear-gradient-violet-pink-2560x1440-c2-d5caf0-f0cad9-a-255-f-14.svg")
-		 }
+		body {font-family: Arial, Helvetica, sans-serif;
+	background-color:Ivory!important;
+		 font-style: italic;
+		 background-image:url("https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.png");
+	}
 		 
 		 
 	h3

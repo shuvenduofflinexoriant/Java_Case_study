@@ -3,25 +3,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Return Requests</title>
+<title>Insert title here</title>
+
 
 <link rel="stylesheet" href="style.css">
 <style>
-	body {
-
-	
-	font-family: cursive;
-	background-color: rgba(218, 247, 166 );
-	font-style: italic;
-	background-image:url("https://i.pinimg.com/originals/af/11/bc/af11bc7d20dc8d2cbac2b7f7ad30fa15.jpg")
-		 }
+		body {font-family: Arial, Helvetica, sans-serif;
+	background-color:Ivory!important;
+		 font-style: italic;
+		 background-image:url("https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.png");
+	}
 		 
 		 
 	h3
 	{
 		margin-top:50px;
-		margin-left:40%;
+		margin-left:37%;
 		font-size:35px;
 		position:fixed!important;
 		font-weight:bold!important;
@@ -49,7 +48,7 @@
 	{ 
 	margin-left:85px;
 	width:90% !important;
-	margin-top:200px;
+	margin-top:180px;
 	margin-right:10px;
 	
 	}
@@ -80,7 +79,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h3>VIEW BOOK RETURN REQUESTS</h3>
+		<h3> BOOK RETURNED REQUESTS</h3>
 	</div>
 </div>
 
@@ -113,7 +112,7 @@ if(request.getAttribute("issuedBooks") != null && !issuedBooks.isEmpty())  // Nu
 		<td class="text-primary" ><%=issuedBook.getReturningDate()%></td>
 		<td class="text-primary" ><%=issuedBook.getReturnedDate() %></td>
 		<td class="text-primary" ><%=issuedBook.getStatus() %></td>
-		<td a class="btn btn-success" ><a href="approveReturn/<%=issuedBook.getIssueId()%>">APPROVE</a></td>
+		<td  ><a  class="btn btn-success" href="approveReturn/<%=issuedBook.getIssueId()%>">APPROVE</a></td>
 	</tr>
 	<%
 	}
