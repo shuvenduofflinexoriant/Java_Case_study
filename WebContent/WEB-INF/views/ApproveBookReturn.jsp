@@ -28,8 +28,11 @@ a{
 
 </head>
 <body>
-	<h2 class="text-success bg-light">Book Return Success!</h2>
-	
-	<a href="/">HOME</a>
+
+	<div class="alert alert-success alert-dismissible" style="margin-left:300px; margin-top:40px; width:50%; text-align:center;">
+ 		 <button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<strong>Success!</strong> Book Return Success!
+	</div>
+<button class="btn btn-primary" style="margin-left:1100px; margin-top:-60px;" href="/">Home</button>
 </body>
 </html>

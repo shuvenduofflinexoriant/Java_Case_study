@@ -77,14 +77,15 @@ button {
 	<table class="table table-striped" border=1, cellpadding="5">
 		<thead class="thead-dark">
 			<tr>
-				<th>User Id</th>
-				<th>Name</th>
-				<th>Role</th>
-				<th>Admission Date</th>
-				<th>Release Date</th>
-				<th>Address</th>
-				<th>Contact Number</th>
-			</tr>
+			    <th> User Id</th>
+			    <th> Name</th>
+			    <th> Role</th>
+			    <th> Admission Date</th>
+			    <th> Release Date</th>
+			    <th> Address</th>
+			    <th> Contact Number</th>
+			    <th>Action</th>
+    		</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${studentData}" var="student">
