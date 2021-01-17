@@ -22,7 +22,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 	
 	@Override
-	public void addLiberian(Liberian liberian,String password) {
+	public String addLiberian(Liberian liberian,String password) {
 		Session session = factory.openSession();
 		Transaction txn = session.beginTransaction();
 		String userId = (String) session.save(liberian);
@@ -31,5 +31,6 @@ public class AdminDAOImpl implements AdminDAO {
 		session.save(login);
 		txn.commit();
 		session.close();
+		return userId;
 	}
 }

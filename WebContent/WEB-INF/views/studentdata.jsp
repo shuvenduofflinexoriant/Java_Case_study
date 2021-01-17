@@ -81,11 +81,11 @@
    		<form class="form-inline" action=" http://localhost:8016/Java_Case_Study/studentDataAdd/${userId}" method="post">
 	
 		
-		<label for="roll"><b> Roll Number:</b></label>
-		<input type="text" name="roll" id="roll"  style="margin-top:-40px;" required >
+		<label for="rollno"><b> Roll Number:</b></label>
+		<input type="text" name="rollno" id="rollno"  style="margin-top:-40px;" required >
 		<br></br>
-		<label for="registrationNumber"><b>Registration Number:</b></label>
-		<input type="text" name="registrationNumber" style="margin-top:-40px; margin-bottom:150px;" id="registrationnumber"  required>
+		<label for="registration"><b>Registration Number:</b></label>
+		<input type="text" name="registration" style="margin-top:-40px; margin-bottom:150px;" id="registration"  required>
 		
 	
 		

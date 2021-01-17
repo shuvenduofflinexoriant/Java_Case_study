@@ -36,7 +36,7 @@ body {
 	font-weight: bold !important;
 }
 
-.form-inline input {
+.form-inline input, select {
 	margin-top: -50px;
 	margin-left: 280px;
 	padding: 10px;
@@ -93,11 +93,24 @@ h3 {
 			type="number" name="totalQuantity" id="totalQuantity" required>
 
 		<label for="publishDate"><b>Publish Date:</b></label> <input
-			type="date" name="publishDate" id="publishDate" required> <label
+			type="date" name="publishDate" id="publishDate" required>
+			
+			
+	 <label
 			for="availableOn"><b>Available On:</b></label> <input type="date"
-			name="availableOn" id="availableOn" required> <label
-			for="bookType"><b>Book Type:</b></label> <input type="text"
-			style="margin-top: -160px;" name="bookType" id="bookType" required>
+			name="availableOn" id="availableOn" required> 
+			
+			
+	<label
+			for="bookType"><b>Book Type:</b></label> <select
+			style="margin-top: -180px;" class="form-control" id="bookType"
+			name="bookType" required>
+			<option>REFERENCEBOOK</option>
+			<option>STORYBOOK</option>
+			<option>MAGAZINE</option>
+		</select>
+
+
 
 
 		<button class="btn btn-primary" id="submitbutton" type="submit"

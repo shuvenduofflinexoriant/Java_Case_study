@@ -13,8 +13,13 @@ public interface BookDao {
 	public List<Book> getAllBooks();
 	public boolean issueBookRequest(String userId, int bookId);
 	public void returnBook(Integer issueId);
-	public Map<String,IssuedBook> getAllIssuedBooks(String userId);
-	public Map<String,IssuedBook> getAllRequestedReturnBooks(String userId);
 	public List<Book> getBookByKeyword(String keyword);
+	
+	
+	public List<IssuedBook> getAllReturnedBooks(String userId);
+	public List<IssuedBook> getIssuedANDRequestedReturnBooks(String userId);
+	public String getBookReturnAlert(String userId);
+	
+	
 }
 

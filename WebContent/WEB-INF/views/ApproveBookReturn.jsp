@@ -33,6 +33,8 @@ a{
  		 <button type="button" class="close" data-dismiss="alert">&times;</button>
   			<strong>Success!</strong> Book Return Success!
 	</div>
-<button class="btn btn-primary" style="margin-left:1100px; margin-top:-60px;" href="/">Home</button>
+<div class="container">
+	<button type="button" type="button" class="btn btn-primary" onclick="window.location='http://localhost:8016/Java_Case_Study/'">HOME</button>
+</div>
 </body>
 </html>

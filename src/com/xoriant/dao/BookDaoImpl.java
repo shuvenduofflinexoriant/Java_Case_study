@@ -1,11 +1,13 @@
 package com.xoriant.dao;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.TypedQuery;
 
@@ -122,52 +124,7 @@ public class BookDaoImpl implements BookDao {
 		session.close();
 	}
 
-	@Override
-	public Map<String, IssuedBook> getAllIssuedBooks(String userId) {
-		Session session = factory.openSession();
-		Transaction txn = session.beginTransaction();
-		
-		Map<String,IssuedBook> ibooks = new LinkedHashMap<String,IssuedBook>();
-		String hql = "FROM IssuedBook i WHERE i.student.userId = "+userId;
-		TypedQuery<IssuedBook> query = session.createQuery(hql);
-		List<IssuedBook> issuedBooks = query.getResultList();
-		
-		for(IssuedBook issuedbook: issuedBooks) {
-			if(issuedbook.getStatus().equals(Status.ISSUED)) {
-				Book book = session.get(Book.class,issuedbook.getBook().getBookId());
-				ibooks.put(book.getBookName(), issuedbook);
-			}
-			
-		}
-		
-		txn.commit();
-		session.close();
-		return ibooks;
-	}
-
-	@Override
-	public Map<String, IssuedBook> getAllRequestedReturnBooks(String userId) {
-		Session session = factory.openSession();
-		Transaction txn = session.beginTransaction();
-		
-		Map<String,IssuedBook> ibooks = new LinkedHashMap<String,IssuedBook>();
-		
-		String hql = "FROM IssuedBook i WHERE i.student.userId = "+userId;
-		TypedQuery<IssuedBook> query = session.createQuery(hql);
-		List<IssuedBook> issuedBooks = query.getResultList();
-		
-		for(IssuedBook issuedbook: issuedBooks) {
-			if(issuedbook.getStatus().equals(Status.REQUESTRETURN)) {
-				Book book = session.get(Book.class,issuedbook.getBook().getBookId());
-				ibooks.put(book.getBookName(), issuedbook);
-			}
-			
-		}
-		
-		txn.commit();
-		session.close();
-		return ibooks;
-	}
+	
 
 	@Override
 	public List<Book> getBookByKeyword(String keyword) {
@@ -182,5 +139,55 @@ public class BookDaoImpl implements BookDao {
 		session.close();
 		
 		return books;
+	}
+
+	@Override
+	public List<IssuedBook> getAllReturnedBooks(String userId) {
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		String hql = "FROM IssuedBook i WHERE i.student.userId = '"+userId+"' AND i.status = "+Status.RETURNED.ordinal();
+		TypedQuery<IssuedBook> query = session.createQuery(hql);
+		List<IssuedBook> issuedBooks = query.getResultList();
+		txn.commit();
+		session.close();
+		return issuedBooks;
+	}
+
+	@Override
+	public List<IssuedBook> getIssuedANDRequestedReturnBooks(String userId) {
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		String hql = "FROM IssuedBook i WHERE i.student.userId = '"+userId+"' AND i.status is not "+Status.RETURNED.ordinal();
+		TypedQuery<IssuedBook> query = session.createQuery(hql);
+		List<IssuedBook> issuedBooks = query.getResultList();
+		txn.commit();
+		session.close();
+		return issuedBooks;
+	}
+
+	@Override
+	public String getBookReturnAlert(String userId) {
+		List<IssuedBook> issuedBooks = getIssuedANDRequestedReturnBooks(userId);
+		Date now = new Date();
+		
+		int bookCount = 0;
+		for(IssuedBook book : issuedBooks) {
+			long duration  = book.getReturningDate().getTime() - now.getTime();
+			if(duration < 0) {
+				bookCount++;
+			}else {
+				long diffInDays = TimeUnit.MILLISECONDS.toDays(duration);
+				
+				if(diffInDays < 3) {
+					bookCount++;
+				}
+			}
+			
+			
+		}
+		
+		if(bookCount  == 0) return null;
+		
+		return "You have "+bookCount+" Books to return in 2 Days!!";
 	}
 }

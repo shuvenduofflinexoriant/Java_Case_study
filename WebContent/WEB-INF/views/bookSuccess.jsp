@@ -21,8 +21,10 @@
 
  <div class="alert alert-danger alert-dismissible" style="margin-left:300px; margin-top:30px; width:50%; text-align:center;">
   <strong>Success!</strong> 
-  
+  <%if(request.getAttribute("msg") != null){ %>
+   <strong><%=request.getAttribute("msg")%></strong>
+  <%} %>
 </div>
-  <button type="button" onclick="location.href='/Java_Case_Study/home';" >Home</button>
+  <button type="button" onclick="location.href='/Java_Case_Study/';" >Home</button>
 </body>
 </html>

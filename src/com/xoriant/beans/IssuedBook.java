@@ -59,7 +59,7 @@ public class IssuedBook {
 		this.returnedDate = new Date();
 		this.approverId = null;
 		this.fine = 0;
-		this.status = Status.REQUESTRETURN;
+		this.status = Status.ISSUED;
 	}
 
 	

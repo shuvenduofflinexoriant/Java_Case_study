@@ -64,11 +64,9 @@ public class MyController {
 
 	}
 
-	///Prakhar
+	
 	@RequestMapping(value="approveStudentRegistration/{userId}")
 	public ModelAndView statusChange(@PathVariable("userId") String userId) {
-		 //LiberianDAOImpl liberianDaoImpl = new LiberianDAOImpl();
-		 //liberianDaoImpl.getStudentById(userId);
 		ModelAndView modelAndView = new ModelAndView("studentdata");
 		modelAndView.addObject("userId",userId);
 		return modelAndView;
@@ -85,7 +83,7 @@ public class MyController {
 	}
 
 
-	//Shuvendu 
+	
 	@RequestMapping("/approveReturn/{issuedId}")
 	public ModelAndView approveReturnRequest(@PathVariable("issuedId") int issuedId) {
 
@@ -139,7 +137,7 @@ public class MyController {
 	}
 
 
-	//Anjali
+	
 
 	@RequestMapping("/viewreturnrequests")
 	public ModelAndView viewReturnRequests() {
@@ -180,7 +178,7 @@ public class MyController {
 	}
 
 	@RequestMapping(value="/submitForm",method=RequestMethod.POST)
-	public ModelAndView submitAdmissionForm(
+	public ModelAndView submitStudentRegistration(
 			@RequestParam("name") String name,
 			@RequestParam("address") String address,
 			@RequestParam("contactNumber") String contactNumber,
@@ -319,6 +317,7 @@ public class MyController {
 		if (loggedStudent!=null) {
 			modelAndView = new ModelAndView("StudentProfile");
 			modelAndView.addObject("id",loggedStudent.getUserId());
+			modelAndView.addObject("alert",bookDAO.getBookReturnAlert(loggedStudent.getUserId()));
 			modelAndView.addObject("name",loggedStudent.getName());
 			modelAndView.addObject("regno",loggedStudent.getRegistrationNumber());
 			modelAndView.addObject("rollno",loggedStudent.getRollNumber());
@@ -331,8 +330,8 @@ public class MyController {
 			modelAndView.addObject("time",new Date().toLocaleString());
 		}else if(admin != null) {
 			modelAndView = new ModelAndView("AdminProfile");
-			modelAndView.addObject("id",liberian.getUserId());
-			modelAndView.addObject("name",liberian.getName());
+			modelAndView.addObject("id","ADMIN");
+			modelAndView.addObject("name",admin.getName());
 			modelAndView.addObject("time",new Date().toLocaleString());
 		}
 		return modelAndView;
@@ -349,6 +348,7 @@ public class MyController {
 			if (userId.startsWith("ST")) {
 				loggedStudent = studentDAO.getStudentById(userId);
 				modelAndView = new ModelAndView("StudentProfile");
+				modelAndView.addObject("alert",bookDAO.getBookReturnAlert(loggedStudent.getUserId()));
 				modelAndView.addObject("id",loggedStudent.getUserId());
 				modelAndView.addObject("name",loggedStudent.getName());
 				modelAndView.addObject("regno",loggedStudent.getRegistrationNumber());
@@ -364,7 +364,7 @@ public class MyController {
 			}else {
 				admin = new Admin("Nisha Waikar");
 				modelAndView = new ModelAndView("AdminProfile");
-				modelAndView.addObject("id",admin.getUserId());
+				modelAndView.addObject("id","ADMIN");
 				modelAndView.addObject("name",admin.getName());
 				modelAndView.addObject("time",new Date().toLocaleString());
 			}
@@ -407,8 +407,10 @@ public class MyController {
 		}
 		
 		Liberian liberian = new Liberian(liberianName) ;
-		adminDAO.addLiberian(liberian,password);
+		String userId = adminDAO.addLiberian(liberian,password);
 		ModelAndView modelAndView = new ModelAndView("bookSuccess");
+		String msg = "Liberian "+ userId + " is Added !!";
+		modelAndView.addObject("msg",msg);
 		return modelAndView;
 	}
 	
@@ -432,11 +434,40 @@ public class MyController {
 		return modelAndView;
 	}
 	
+	
+	@RequestMapping("/issuedBooks")
+	public ModelAndView currentIssuedBooks() {
+		ModelAndView modelAndView = new ModelAndView("CurrentIssuedBooks");
+		modelAndView.addObject("issuedBooks",bookDAO.getIssuedANDRequestedReturnBooks(loggedStudent.getUserId()));
+		return modelAndView;
+	}
+	
+	@RequestMapping("/borrowHistory")
+	public ModelAndView StudentBookBorrowHistory() {
+		ModelAndView modelAndView = new ModelAndView("StudentIssuedBookHistory");
+		modelAndView.addObject("issuedBooks",bookDAO.getAllReturnedBooks(loggedStudent.getUserId()));
+		return modelAndView;
+	}
+	
+	@RequestMapping("/returnBook/{issuedId}")
+	public ModelAndView returnBook(@PathVariable("issuedId") int issuedId) {
+		ModelAndView modelAndView = new ModelAndView("bookSuccess");
+		bookDAO.returnBook(issuedId);
+		return modelAndView;
+	}
+	
 	@RequestMapping("/")
 	public ModelAndView welcomeHome() {
 		ModelAndView modelAndView = new ModelAndView("Login");
 		if (loggedStudent!=null) {
 			modelAndView = new ModelAndView("StudentProfile");
+			
+//			Your have 2 Days left to return your books!
+//					You will be fined after that!
+					
+			
+			
+			modelAndView.addObject("alert",bookDAO.getBookReturnAlert(loggedStudent.getUserId()));
 			modelAndView.addObject("id",loggedStudent.getUserId());
 			modelAndView.addObject("name",loggedStudent.getName());
 			modelAndView.addObject("regno",loggedStudent.getRegistrationNumber());
@@ -450,8 +481,8 @@ public class MyController {
 			modelAndView.addObject("time",new Date().toLocaleString());
 		}else if(admin != null) {
 			modelAndView = new ModelAndView("AdminProfile");
-			modelAndView.addObject("id",liberian.getUserId());
-			modelAndView.addObject("name",liberian.getName());
+			modelAndView.addObject("id","ADMIN");
+			modelAndView.addObject("name",admin.getName());
 			modelAndView.addObject("time",new Date().toLocaleString());
 		}
 		return modelAndView;

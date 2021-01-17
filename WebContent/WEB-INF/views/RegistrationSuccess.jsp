@@ -24,5 +24,9 @@
   		<strong>Success!</strong> Student: ${student.userId }'s data is registered successfully
 	</div>
 	
+	<div class="container">
+	<button type="button" type="button" class="btn btn-primary" onclick="window.location='http://localhost:8016/Java_Case_Study/'">LOGIN</button>
+	</div>
+	
 </body>
 </html>

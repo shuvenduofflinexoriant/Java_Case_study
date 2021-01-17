@@ -100,7 +100,7 @@ public class Client {
 //		
 //		System.out.println(logindao.login("ST1", "test123"));
 		
-		System.out.println(new BookDaoImpl().getBookByKeyword("all"));
+		System.out.println(new BookDaoImpl().getIssuedANDRequestedReturnBooks("ST1"));
 
 	}
 	

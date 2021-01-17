@@ -166,7 +166,8 @@
 		</div>
 	</div>
 
-	<div class="malert">Your have 2 Days left to return your books!
-		You will be fined after that!</div>
+<% if(request.getAttribute("alert") != null) {%>
+	<div class="malert"><%=request.getAttribute("alert") %></div>
+	<%} %>
 </body>
 </html>
