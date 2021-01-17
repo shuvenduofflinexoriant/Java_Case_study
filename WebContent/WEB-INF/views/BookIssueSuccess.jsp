@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style>
 
 	body {font-family: Arial, Helvetica, sans-serif;
@@ -15,6 +16,8 @@
 </style>
 </head>
 <body>
-Book Issued
+<div class="alert alert-success" style="margin-top:30px;">
+  <strong>Success!</strong> Book Issued
+</div>
 </body>
 </html>
