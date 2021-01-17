@@ -21,7 +21,7 @@
 
 	 <div class="alert alert-success alert-dismissible" style="margin-left:300px; margin-top:30px; width:50%; text-align:center;">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
-  		<strong>Success!</strong> Student: ${student.name }'s data is registered successfully
+  		<strong>Success!</strong> Student: ${student.userId }'s data is registered successfully
 	</div>
 	
 </body>
