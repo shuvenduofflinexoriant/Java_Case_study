@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>Insert title here</title>
+<title>Success</title>
 <style>
 
 	body {font-family: Arial, Helvetica, sans-serif;
@@ -20,8 +20,9 @@
 <body>
 
  <div class="alert alert-danger alert-dismissible" style="margin-left:300px; margin-top:30px; width:50%; text-align:center;">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Success!</strong> gotcha
+  <strong>Success!</strong> 
+  
 </div>
+  <button type="button" onclick="location.href='/Java_Case_Study/home';" >Home</button>
 </body>
 </html>
