@@ -28,7 +28,7 @@
 		<h4>Approver : <%=request.getAttribute("approver")%></h4>
 		<h4>Status : Successfull</h4>
 		
-		<button class="btn btn-primary" onclick="location.href='http://localhost:8016/Java_Case_Study/">HOME</button>
+		<button class="btn btn-primary" onclick="location.href='http://localhost:8016/Java_Case_Study/'">HOME</button>
 	</div>
 </div>
 </body>

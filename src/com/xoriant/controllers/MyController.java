@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.xoriant.beans.Admin;
 import com.xoriant.beans.Book;
 import com.xoriant.beans.BookType;
@@ -66,7 +64,7 @@ public class MyController {
 
 	
 	@RequestMapping(value="approveStudentRegistration/{userId}")
-	public ModelAndView statusChange(@PathVariable("userId") String userId) {
+	public ModelAndView approveStudentRegistration(@PathVariable("userId") String userId) {
 		ModelAndView modelAndView = new ModelAndView("studentdata");
 		modelAndView.addObject("userId",userId);
 		return modelAndView;
@@ -74,7 +72,7 @@ public class MyController {
 	}
 	
 	@RequestMapping(value="studentDataAdd/{userId}" ,method=RequestMethod.POST)
-	public ModelAndView statusChange1(@PathVariable("userId") String userId,@RequestParam("rollno") String rollno,@RequestParam("registration") String registration) {
+	public ModelAndView approveStudentRegistrationSuccess(@PathVariable("userId") String userId,@RequestParam("rollno") String rollno,@RequestParam("registration") String registration) {
 		
 		liberianDAO.getStudentById(userId, rollno, registration);
 		ModelAndView modelAndView = new ModelAndView("bookSuccess");
@@ -160,7 +158,7 @@ public class MyController {
 
 
 	@RequestMapping("/allissuedbooks")
-	public ModelAndView showAllRequests() {
+	public ModelAndView showAllIssuedBooks() {
 		ModelAndView modelAndView = new ModelAndView("ViewIssuedBook");
 		LiberianDAO liberianDAO = new LiberianDAOImpl();
 		List<IssuedBook> issuedBooks = liberianDAO.getAllBookIssued();
@@ -170,7 +168,7 @@ public class MyController {
 
 
 	@RequestMapping("/StudentRegistration")
-	public ModelAndView getStudentAddForm()
+	public ModelAndView getStudentRegsitrationForm()
 	{
 		ModelAndView modelAndView = new ModelAndView("StudentRegistration");
 		return modelAndView;
@@ -182,8 +180,6 @@ public class MyController {
 			@RequestParam("name") String name,
 			@RequestParam("address") String address,
 			@RequestParam("contactNumber") String contactNumber,
-			//			@RequestParam("registrationNumber") String registrationNumber,
-			//			@RequestParam("rollNumber") String rollNumber,
 			@RequestParam("admissionDate") String admissionDate, 
 			@RequestParam("releaseDate") String releaseDate,
 			@RequestParam("password") String password) {
@@ -231,7 +227,7 @@ public class MyController {
 	}
 
 	@RequestMapping(value="/bookAddSubmit", method=RequestMethod.POST)
-	public ModelAndView displayBookSubmitForm(@RequestParam("bookName") String bookName ,
+	public ModelAndView bookAddSubmit(@RequestParam("bookName") String bookName ,
 			@RequestParam("author") String author,
 			@RequestParam("publication") String publication,
 			@RequestParam("description") String description,
@@ -274,7 +270,7 @@ public class MyController {
 
 	}
 
-	//Anjali
+	
 	@RequestMapping("/borrow")
 	public ModelAndView borrowBook() {
 		ModelAndView modelAndView = new ModelAndView("BorrowBook");
@@ -283,21 +279,22 @@ public class MyController {
 		return modelAndView;
 	}
 
-	//Anjali
+	
 	@RequestMapping(value="/SearchBook")
 	public ModelAndView getBook()
 	{
 		ModelAndView modelAndView = new ModelAndView("SearchBook");
 		modelAndView.addObject("books",bookDAO.getBookByKeyword(""));
+		if(loggedStudent!=null)
+			modelAndView.addObject("role","student");
 		return modelAndView;
 	}
 
 
 
-	//sanket 
 
 	@RequestMapping("/borrow/{bookId}")
-	public ModelAndView addToIssuedBook(@PathVariable("bookId") int bookId) {
+	public ModelAndView issueBook(@PathVariable("bookId") int bookId) {
 		ModelAndView modelAndView;
 		System.out.println("Borrow Book  "+ bookId);
 
@@ -389,13 +386,13 @@ public class MyController {
 	
 	
 	@RequestMapping(value="/addliberian" , method= RequestMethod.GET) 
-	public ModelAndView getForm1() {
+	public ModelAndView getAddLiberianForm() {
 		ModelAndView modelAndView = new ModelAndView("addLiberian");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/liberianadded", method=RequestMethod.POST)
-     public ModelAndView addLib(@RequestParam("liberianName") String liberianName,
+     public ModelAndView addLiberian(@RequestParam("liberianName") String liberianName,
     		 @RequestParam("password") String password,
     		 @RequestParam("confirmpassword") String confirmpassword
     		 ) {
@@ -416,7 +413,7 @@ public class MyController {
 	
 	
 	@RequestMapping(value="/approvestudent")
-	public ModelAndView approve() {
+	public ModelAndView approveStudentForm() {
 		
 		LiberianDAOImpl liberianDaoImpl = new LiberianDAOImpl();
 		List<Student> studentData = liberianDaoImpl.approveStudentRegistration() ;
@@ -453,6 +450,45 @@ public class MyController {
 	public ModelAndView returnBook(@PathVariable("issuedId") int issuedId) {
 		ModelAndView modelAndView = new ModelAndView("bookSuccess");
 		bookDAO.returnBook(issuedId);
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping("/updatePassword")
+	public ModelAndView updatePasswordPage(){
+		ModelAndView modelAndView = new ModelAndView("UpdatePassword");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/updatePassword", method=RequestMethod.POST)
+    public ModelAndView updatePassword(@RequestParam("oldpassword") String oldpassword,
+   		 @RequestParam("password") String password,
+   		 @RequestParam("confirmpassword") String confirmpassword
+   		 ) {
+		
+		
+		
+		ModelAndView modelAndView = new ModelAndView("UpdatePassword");
+		if(!password.equals(confirmpassword)) {
+			modelAndView.addObject("error","Password dont match!");
+			return modelAndView;
+		}
+		
+
+		String userId = "";
+		if(loggedStudent!=null) {
+			userId = loggedStudent.getUserId();
+		}else if(liberian != null) {
+			userId = liberian.getUserId();
+		}else {
+			userId = "ADMIN";
+		}
+		
+		if(loginDAO.changePassword(userId, oldpassword, password)) {
+			modelAndView.addObject("error","Password Updated Successfully!");
+		}else {
+			modelAndView.addObject("error","Wrong Current Password!");
+		}
 		return modelAndView;
 	}
 	

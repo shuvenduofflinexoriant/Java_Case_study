@@ -31,8 +31,7 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public String addStudent(Student student,String password) {
-		// TODO Auto-generated method stub
-	
+		
 		Session session =  factory.openSession();
 		Transaction txn = session.beginTransaction();
 		
@@ -43,20 +42,6 @@ public class StudentDaoImpl implements StudentDao {
 		System.out.println("Saved Successfully");
 		return userId1;
 		
-	}
-
-	
-
-	@Override
-	public void  issueBook() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Book returnBook() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 

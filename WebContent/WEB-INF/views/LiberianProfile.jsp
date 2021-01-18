@@ -96,6 +96,10 @@
             APPROVE BOOK RETURN</button>
         <button onclick="window.location='http://localhost:8016/Java_Case_Study/allissuedbooks'"><i class="fa fa-history" aria-hidden="true"></i>
             ISSUED HISTORY</button>
+        <button
+				onclick="window.location='http://localhost:8016/Java_Case_Study/updatePassword'">
+				<i class="fa fa-key" aria-hidden="true"></i> UPDATE PASSWORD
+			</button>
         <button onclick="window.location='http://localhost:8016/Java_Case_Study/logout'"><i class="fa fa-sign-out" aria-hidden="true"></i>
             LOGOUT</button>
     </div>

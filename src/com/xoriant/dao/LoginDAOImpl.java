@@ -68,10 +68,10 @@ public class LoginDAOImpl implements LoginDAO {
 		Session session =  factory.openSession();
 		Transaction txn = session.beginTransaction();
 		
-		password = Utility.getMd5(newPassword);
+		newPassword = Utility.getMd5(newPassword);
 		
-		Login login = new Login(userId,password);
-		session.save(login);
+		Login login = new Login(userId,newPassword);
+		session.update(login);
 		
 		
 		txn.commit();
