@@ -37,7 +37,7 @@ body {
 }
 
 .right {
-	margin-top: 290px;
+	margin-top: 140px;
 }
 
 .right>button {

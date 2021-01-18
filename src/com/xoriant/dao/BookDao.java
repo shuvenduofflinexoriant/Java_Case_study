@@ -19,6 +19,7 @@ public interface BookDao {
 	public List<IssuedBook> getAllReturnedBooks(String userId);
 	public List<IssuedBook> getIssuedANDRequestedReturnBooks(String userId);
 	public String getBookReturnAlert(String userId);
+	public Book getBookById(int bookId);
 	
 	
 }

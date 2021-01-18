@@ -269,6 +269,54 @@ public class MyController {
 		return modelAndView;
 
 	}
+	
+	
+	@RequestMapping("/editBook/{bookId}") 
+	public ModelAndView getAddBookForm(@PathVariable int bookId) {
+		
+		ModelAndView modelAndView = null;
+		if(liberian!=null) {
+			modelAndView = new ModelAndView("editBook");
+			modelAndView.addObject("book",bookDAO.getBookById(bookId));
+		}else {
+			modelAndView = new ModelAndView("Login");
+			modelAndView.addObject("error","Login To Continue!");
+		}
+		
+
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping(value="/editBook/{bookId}", method=RequestMethod.POST)
+	public ModelAndView editBook(@PathVariable int bookId,@RequestParam("bookName") String bookName ,
+			@RequestParam("author") String author,
+			@RequestParam("publication") String publication,
+			@RequestParam("description") String description,
+			@RequestParam("totalQuantity") String totalQuantity,
+			@RequestParam("avaiableQuantity") String availableQuantity,
+			@RequestParam("bookType") String bookType) {
+		
+		Book book = bookDAO.getBookById(bookId);
+		book.setBookName(bookName);
+		book.setAuthor(author);
+		book.setPublication(publication);
+		book.setDescription(description);
+		book.setTotalQuantity(Integer.parseInt(totalQuantity));
+		book.setAvailableQuantity(Integer.parseInt(availableQuantity));
+		BookType bookpref = BookType.valueOf(bookType);
+		book.setBookType(bookpref);
+
+
+
+		System.out.println(book);
+
+		
+		liberianDAO.editBook(book);
+		ModelAndView modelAndView = new ModelAndView("bookSuccess");
+		return modelAndView;
+
+	}
 
 	
 	@RequestMapping("/borrow")

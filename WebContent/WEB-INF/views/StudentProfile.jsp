@@ -30,12 +30,11 @@
 
 
 .malert {
-	margin-top:-530px !important;
-	right: 50px;
-	top: 50px;
+	position:absolute;
+	right: 60px;
+	top: 220px;
 	width: 500px;
 	height: 80px;
-	margin-left:700px;
 	z-index: 1;
 	border-radius: 5px;
 	border: solid 1px rgb(204, 82, 82);
@@ -49,7 +48,7 @@
 }
 
 .right {
-	margin-top:400px;
+	margin-top:300px;
 
 	
 }
@@ -133,15 +132,15 @@
 				<div class="card-body">
 					
 					Role : STUDENT
-					<br></br>
+					<br>
 					ID :<%=request.getAttribute("id")%>
-						<br></br>
+						<br>
 					Registration Number : <%=request.getAttribute("regno")%>
-						<br></br>
+						<br>
 					Roll Number : <%=request.getAttribute("rollno")%>
-						<br></br>
+						<br>
 					Address : <%=request.getAttribute("address")%>
-						<br></br>
+						<br>
 					Admission Date : <%=request.getAttribute("admission")%>
 				</div>
 			</div>

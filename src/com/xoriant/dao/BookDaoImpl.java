@@ -190,4 +190,18 @@ public class BookDaoImpl implements BookDao {
 		
 		return "You have "+bookCount+" Books to return in 2 Days!!";
 	}
+
+	@Override
+	public Book getBookById(int bookId) {
+		Session session =  factory.openSession();
+		Transaction txn = session.beginTransaction();
+		
+		String hql = "FROM Book b WHERE b.bookId = "+bookId;
+		TypedQuery<Book> query = session.createQuery(hql);
+		Book book = query.getSingleResult();
+		txn.commit();
+		session.close();
+		
+		return book;
+	}
 }

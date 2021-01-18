@@ -124,9 +124,8 @@
 				<th>Available Quantity</th>
 				<th>Total Quantity</th>
 				<th>Description</th>
-				<%if(request.getAttribute("role")!=null){ %>
 				<th>Action</th>
-				<%} %>
+				
 		
 			</tr>
 		</thead>
@@ -153,7 +152,10 @@
 	      			<%if(request.getAttribute("role")!=null){ %>
 	      			<%if(book.getAvailableQuantity()>0){ %>
 	  	  			<td><button class="btn btn-success" onclick="window.location='http://localhost:8016/Java_Case_Study/borrow/<%=book.getBookId()%>'"  type="submit">ISSUE</button>
-	  	  			<% }else {%><td><button class="btn btn-danger" disabled type="submit">Book not available</button></td><%}}; %>
+	  	  			<% }else {%><td><button class="btn btn-danger" disabled type="submit">Book not available</button></td><%}} else { %>
+	  	  			
+	  	  			<td><button class="btn btn-success" onclick="window.location='http://localhost:8016/Java_Case_Study/editBook/<%=book.getBookId()%>'"  type="submit">EDIT</button>
+	  	  			<%}; %>
 	    		</tr>
 	    		<%
 				}

@@ -184,4 +184,14 @@ public class LiberianDAOImpl implements LiberianDAO {
 		
 	}
 
+	@Override
+	public boolean editBook(Book book) {
+		Session session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		session.update(book);
+		txn.commit();
+		session.close();
+		return true;
+	}
+
 }
